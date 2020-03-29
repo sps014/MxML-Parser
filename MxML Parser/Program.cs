@@ -33,8 +33,11 @@ namespace MxML.Parser
             //get version info
             var versionInfo = GetXMLInfo(reader.ReadLine());
 
+            //1st one is version,encoding
             result.Version = versionInfo.Item1;
             result.Encoding = versionInfo.Item2;
+
+            string lines = reader.ReadToEnd();
 
             reader.Close();
             //For the first line get the Version
@@ -44,8 +47,13 @@ namespace MxML.Parser
         /// Parsing XML Here
         /// </summary>
         /// <param name="line"></param>
-        /// <returns></returns>
+        /// <returns>1st one is version,encoding respectively</returns>
         private static (string,string) GetXMLInfo(string line)
+        {
+
+        }
+
+        private static ChildNode ParseChildern(string lines)
         {
 
         }
