@@ -2,7 +2,6 @@
 using System.IO;
 using System.Collections.Generic;
 using Helpers;
-using System.Xml.Schema;
 
 namespace MxML.Parser
 {
@@ -11,14 +10,14 @@ namespace MxML.Parser
         public static void Main(string[] args)
         {
             Console.ForegroundColor = ConsoleColor.Blue;
-
-            HelperUtility.GetAllFilesOfExtension(@"C:\Users\shive\Desktop\loginscreen\flex");
+            ParseData(@"C:\Users\shive\Desktop\loginscreen\flex");
             Console.ForegroundColor = ConsoleColor.White;
 
         }
-        public static MxMLParsedData[] ParseData(string[] files)
+        public static MxMLParsedData[] ParseData(string path)
         {
-            List<MxMLParsedData> parseResult = new List<MxMLParsedData>();   
+            List<MxMLParsedData> parseResult = new List<MxMLParsedData>();
+            var files=HelperUtility.GetAllFilesOfExtension(path, ".mxml");
             foreach (string file in files)
             {
                 parseResult.Add(ParseSingleMxML(file));
@@ -51,12 +50,22 @@ namespace MxML.Parser
         /// <returns>1st one is version,encoding respectively</returns>
         private static (string,string) GetXMLInfo(string line)
         {
-            //
+            //<?xml version="1.0" encoding="utf-8"?>
+            int index = line.IndexOf("version") + 9;
+            int lastIndexVersion = line.IndexOf("\"", index + 2);
+            if (index > lastIndexVersion || index == 8 || lastIndexVersion == 2)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("not a valid version number");
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+            string version = line.Substring(index, lastIndexVersion - index);
+            return (version, null);
         }
 
         private static ChildNode ParseChildern(string lines)
         {
-
+            return null;
         }
 
     }
