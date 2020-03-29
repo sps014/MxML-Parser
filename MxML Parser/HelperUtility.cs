@@ -25,9 +25,7 @@ namespace Helpers
             {
                 if (info.Extension == extn)
                 {
-                    Console.WriteLine(info.FullName);
                     res.Add(info.FullName);
-
                 }
 
             }
@@ -56,6 +54,12 @@ namespace Helpers
         public static void LogStatus(string success)
         {
             Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine(success);
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+        public static void LogInitiation(string success)
+        {
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine(success);
             Console.ForegroundColor = ConsoleColor.White;
         }

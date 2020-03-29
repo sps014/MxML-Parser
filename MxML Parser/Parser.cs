@@ -11,22 +11,32 @@ namespace MxML.Parser
     {
         public static void Main(string[] args)
         {
-            Console.ForegroundColor = ConsoleColor.Blue;
             ParseData(@"C:\Users\shive\Desktop\loginscreen\flex");
-            Console.ForegroundColor = ConsoleColor.White;
 
         }
         public static MxMLParsedData[] ParseData(string path)
         {
+            HelperUtility.LogInitiation($"Started Parsing files of Path:{path}");
+            var parseSuccessStatus = true;
+
             List<MxMLParsedData> parseResult = new List<MxMLParsedData>();
             var files=HelperUtility.GetAllFilesOfExtension(path, ".mxml");
             foreach (string file in files)
             {
                 HelperUtility.LogStatus($"started parsing {file}");
                 var pResult = ParseSingleMxML(file);
-                if(pResult!=null)
+                if (pResult != null)
                     parseResult.Add(pResult);
+                else
+                    parseSuccessStatus = false;
             }
+
+            if (parseSuccessStatus)
+                HelperUtility.LogSuccess("Successfully parsed files");
+            else
+                HelperUtility.LogError("Failed parsing files");
+
+
             return parseResult.ToArray();
         }
         private static MxMLParsedData ParseSingleMxML(string path)
