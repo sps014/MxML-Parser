@@ -1,13 +1,21 @@
 ﻿using System;
+using Helpers;
 
-namespace MxML_Parser
+namespace MxML.Parser
 {
-    class Program
+    public class Parser
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            Console.WriteLine("Raghav World!");
-
+            HelperUtility.GetAllFilesOfExtension(@"C:\Users\shive\Desktop\loginscreen\flex");
         }
+        //public static MxMLParsedData[] ParseData(string[] files)
+        //{
+        //    foreach(string file in files)
+        //    {
+
+        //    }
+        //}
+
     }
 }
