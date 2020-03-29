@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
+
 using Helpers;
 
 namespace MxML.Parser
@@ -20,7 +22,10 @@ namespace MxML.Parser
             var files=HelperUtility.GetAllFilesOfExtension(path, ".mxml");
             foreach (string file in files)
             {
-                parseResult.Add(ParseSingleMxML(file));
+                HelperUtility.LogStatus($"started parsing {file}");
+                var pResult = ParseSingleMxML(file);
+                if(pResult!=null)
+                    parseResult.Add(pResult);
             }
             return parseResult.ToArray();
         }
@@ -30,11 +35,16 @@ namespace MxML.Parser
             StreamReader reader = new StreamReader(path);
 
             //get version info
-            var versionInfo = GetXMLInfo(reader.ReadLine());
+            var isHeaderMatch = GetXMLInfo(reader.ReadLine());
+            if (!isHeaderMatch)
+            {
+                HelperUtility.LogError("Can't parse version and encoding ");
+                return null;
+            }
 
             //1st one is version,encoding
-            result.Version = versionInfo.Item1;
-            result.Encoding = versionInfo.Item2;
+            result.Version = "1.0";
+            result.Encoding = "utf-8";
 
             string lines = reader.ReadToEnd();
             result.Child = ParseChildern(lines);
@@ -43,26 +53,24 @@ namespace MxML.Parser
             //For the first line get the Version
             return result;
         }
+
         /// <summary>
         /// Parsing XML Here
         /// </summary>
         /// <param name="line"></param>
         /// <returns>1st one is version,encoding respectively</returns>
-        private static (string,string) GetXMLInfo(string line)
+        private static bool GetXMLInfo(string line)
         {
             //<?xml version="1.0" encoding="utf-8"?>
-            int index = line.IndexOf("version") + 9;
-            int lastIndexVersion = line.IndexOf("\"", index + 2);
-            if (index > lastIndexVersion || index == 8 || lastIndexVersion == 2)
+            
+            if(line.IndexOf("version")==-1||line.IndexOf("encoding")==-1)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("not a valid version number");
-                Console.ForegroundColor = ConsoleColor.White;
+                return false;
             }
-            string version = line.Substring(index, lastIndexVersion - index);
-            return (version, null);
-        }
 
+            string pattern= @"<\?xml\s\w*=\W[\w.]*\W\s*[\w]*=\W[\w-]*\W\?>";
+            return Regex.IsMatch(line, pattern);
+        }
         private static ChildNode ParseChildern(string lines)
         {
             return null;
