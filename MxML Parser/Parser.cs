@@ -45,7 +45,7 @@ namespace MxML.Parser
             StreamReader reader = new StreamReader(path);
 
             //get version info
-            var isHeaderMatch = GetXMLInfo(reader.ReadLine());
+            var isHeaderMatch = IsCorrectHeader(reader.ReadLine());
             if (!isHeaderMatch)
             {
                 HelperUtility.LogError("Can't parse version and encoding ");
@@ -64,12 +64,8 @@ namespace MxML.Parser
             return result;
         }
 
-        /// <summary>
-        /// Parsing XML Here
-        /// </summary>
-        /// <param name="line"></param>
-        /// <returns>1st one is version,encoding respectively</returns>
-        private static bool GetXMLInfo(string line)
+
+        private static bool IsCorrectHeader(string line)
         {
             //<?xml version="1.0" encoding="utf-8"?>
             
