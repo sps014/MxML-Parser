@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 using Helpers;
+using System.Xml;
+using Newtonsoft.Json;
 
 namespace MxML.Parser
 {
@@ -57,9 +59,10 @@ namespace MxML.Parser
             result.Encoding = "utf-8";
 
             string lines = reader.ReadToEnd();
-            result.Child = ParseChildern(lines);
+            result.Child = ParseChildern(path);
 
             reader.Close();
+
             //For the first line get the Version
             return result;
         }
@@ -74,13 +77,43 @@ namespace MxML.Parser
                 return false;
             }
 
-            string pattern= @"<\?xml\s\w*=\W[\w.]*\W\s*[\w]*=\W[\w-]*\W\?>";
+            string pattern= @"<\?xml\s*\w*=\W[\w.]*\W\s*[\w]*=\W[\w-]*\W\?>";
             return Regex.IsMatch(line, pattern);
         }
-        private static ChildNode ParseChildern(string lines)
+        private static ChildNode ParseChildern(string path)
         {
+            XmlDocument document = new XmlDocument();
+            document.Load(path);
+
+            string json=JsonConvert.SerializeXmlNode(document);
+
             return null;
         }
 
     }
 }
+
+//<\w*\s\w*\W*(.*)>
+
+// <div id='container'>
+// <div class='nested'>
+// <a href='some url' class='link'>
+// </a>
+// </div>
+// </div>
+
+// #some scripts ....
+
+// <div id='container'>
+// <div class='nested'>
+// <a href='some url' class='link'>
+// </a>
+// </div>
+// </div>
+
+
+//    <h1>
+// <a>content inside</a>
+// </h1>
+
+//<(\w+)>\s*<(\w+)>\s*(.*)\s*<\/\2>\s*<\/\1>

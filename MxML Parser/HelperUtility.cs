@@ -35,29 +35,29 @@ namespace Helpers
                 RecursiveFolders(folder.FullName, extn, ref res);
             }
         }
-        public static void LogError(string error)
+        public static void LogError(object error)
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(error);
             Console.ForegroundColor = ConsoleColor.White;
         }
-        public static void LogSuccess(string success)
+        public static void LogSuccess(object success)
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine(success);
             Console.ForegroundColor = ConsoleColor.White;
         }
-        public static void Log(string text)
+        public static void Log(object text)
         {
             Console.WriteLine(text);
         }
-        public static void LogStatus(string success)
+        public static void LogStatus(object success)
         {
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.WriteLine(success);
             Console.ForegroundColor = ConsoleColor.White;
         }
-        public static void LogInitiation(string success)
+        public static void LogInitiation(object success)
         {
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine(success);

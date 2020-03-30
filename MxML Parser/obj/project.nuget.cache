@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "RjLsN/7AxlQT1TOnG8Q61kh2zLmz4a9V91f/FsGY7gP97bCpHDsmeK4e3+oKgfPdmymhokE+T3/mZgYtmrgLZg==",
+  "dgSpecHash": "gwytMnS+Wx3oPu+yPHfZnk5awVTR2jcNzsvnsY4OifaLew6HXlosvll6Tg43NWXAewGvBdcQ/r0mO0rUhl59hg==",
   "success": true,
   "projectFilePath": "C:\\Users\\shive\\Desktop\\Test\\MxML Parser\\MxML Parser\\MxML Parser.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\shive\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
+  ],
   "logs": []
 }
