@@ -13,5 +13,6 @@ namespace MxML.Parser
     {
         public ChildNode[] Children { get; set; }
         public Dictionary<string, string> Parameters { get; set; }
+        public string Name { get; set; }
     }
 }

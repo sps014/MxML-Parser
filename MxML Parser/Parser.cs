@@ -105,32 +105,24 @@ namespace MxML.Parser
         }
         private static bool ParseChildern(JObject data,ref MxMLParsedData pObject)
         {
+            foreach(var d in data)
+            {
+                if (d.Key == "?xml")
+                    continue;
+
+                pObject.Child=SolveChildNode((JObject)d.Value);
+                if (pObject.Child != null)
+                    pObject.Child.Name = d.Key;
+                else
+                    HelperUtility.LogError("Can't parse the Root Element");
+
+                break;
+            }
             return true;
+        }
+        private static ChildNode SolveChildNode(JObject node)
+        {
+            return null;
         }
     }
 }
-
-//<\w*\s\w*\W*(.*)>
-
-// <div id='container'>
-// <div class='nested'>
-// <a href='some url' class='link'>
-// </a>
-// </div>
-// </div>
-
-// #some scripts ....
-
-// <div id='container'>
-// <div class='nested'>
-// <a href='some url' class='link'>
-// </a>
-// </div>
-// </div>
-
-
-//    <h1>
-// <a>content inside</a>
-// </h1>
-
-//<(\w+)>\s*<(\w+)>\s*(.*)\s*<\/\2>\s*<\/\1>
