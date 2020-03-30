@@ -13,6 +13,7 @@ namespace MxML.Parser
             MxMLParsedData mxMLParsed = new MxMLParsedData();
 
             var xml = ReadFile(path);
+            xml = RemovedNamespace(xml);
 
             mxMLParsed.ActionCode = ParseCDATA(xml);
             mxMLParsed.RazorCode = ParseTags(xml, mxMLParsed.ActionCode);
@@ -43,6 +44,15 @@ namespace MxML.Parser
             return str;
 
 
+        }
+        private static string RemovedNamespace(string str)
+        {
+            var match=Regex.Match(str, @"xmlns:mx=\W(.*)\W");
+            if (match.Groups.Count >= 1)
+                if (match.Groups[0].Value.Length > 0)
+                    return str.Replace(match.Groups[0].Value, "");
+
+            return str;
         }
         private static string ReadFile(string path)
         {
