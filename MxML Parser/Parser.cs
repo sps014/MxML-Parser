@@ -1,13 +1,12 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
-
 using Helpers;
 using System.Xml;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 
 namespace MxML.Parser
 {
@@ -110,7 +109,7 @@ namespace MxML.Parser
                 if (d.Key == "?xml")
                     continue;
 
-                pObject.Child=SolveChildNode((JObject)d.Value);
+                pObject.Child=SolveRootNode((JObject)d.Value);
                 if (pObject.Child != null)
                     pObject.Child.Name = d.Key;
                 else
@@ -120,14 +119,57 @@ namespace MxML.Parser
             }
             return true;
         }
-        private static ChildNode SolveChildNode(JObject data)
+        private static ChildNode SolveRootNode(JObject data)
         {
             ChildNode node = new ChildNode();
+            Dictionary<string, string> Parameters = new Dictionary<string, string>();
+            List<ChildNode> children = new List<ChildNode>();
+
             foreach(var n in data)
             {
-                Console.WriteLine(n.Key);
+                if (isParameter(n.Key))
+                    Parameters.Add(RemoveAtRateSymbol(n.Key), n.Value.Value<string>());
+                else
+                {
+                   // var child = SolveChildNode((JObject)n.Value,n.Key, ref node);
+                }
             }
+            node.Parameters = Parameters;
             return node;
+        }
+        private static ChildNode SolveChildNode(JObject data,string name,ref ChildNode parent)
+        {
+            ChildNode node = new ChildNode();
+            Dictionary<string, string> Parameters = new Dictionary<string, string>();
+            List<ChildNode> children = new List<ChildNode>();
+
+            foreach (var n in data)
+            {
+                if (isParameter(n.Key))
+                    Parameters.Add(RemoveAtRateSymbol(n.Key), n.Value.Value<string>());
+                else
+                {
+                    var child = SolveChildNode((JObject)n.Value, n.Key, ref node);
+                }
+            }
+            node.Parameters = Parameters;
+
+            return node;
+        }
+        private static bool isParameter(string str)
+        {
+            if (str[0] == '@')
+                return true;
+            else
+                return false;
+        }
+        private static string RemoveAtRateSymbol(string s)
+        {
+            if (s[0] == '@')
+                return s.Remove(0,1);
+
+            return s;
         }
     }
 }
+        
