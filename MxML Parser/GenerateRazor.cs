@@ -17,9 +17,10 @@ namespace MxML.Parser
 
             mxMLParsed.ActionCode = ParseCDATA(xml);
             mxMLParsed.RazorCode = ParseTags(xml, mxMLParsed.ActionCode);
+            mxMLParsed.RazorCode = ReplaceColons(mxMLParsed.RazorCode);
             mxMLParsed.Path = path;
 
-            WriteFile(mxMLParsed.RazorCode);
+            WriteFile(mxMLParsed);
 
             return mxMLParsed;
         }
@@ -52,6 +53,10 @@ namespace MxML.Parser
 
             return str;
         }
+        private static string ReplaceColons(string razor,string text=".")
+        {
+            return razor.Replace(":",text);
+        }
         private static void InlineFunctions(string str)
         {
             //\W\w*\([\w|.|,|\s*|=']*\)
@@ -64,11 +69,15 @@ namespace MxML.Parser
             reader.Close();
             return xmlBody;
         }
-        private static void WriteFile(string str)
+        private static void WriteFile(MxMLParsedData data)
         {
-            StreamWriter sw = new StreamWriter("text.txt");
-            sw.Write(str);
+            StreamWriter sw = new StreamWriter(NameWithoutExtension(data.Path));
+            sw.Write(data.RazorCode);
             sw.Close();
+        }
+        private static string NameWithoutExtension(string str)
+        {
+            return str.Replace(".mxml", ".razor");
         }
 
     }
