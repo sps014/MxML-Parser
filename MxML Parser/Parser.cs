@@ -65,33 +65,17 @@ namespace MxML.Parser
         {
             MxMLParsedData pObject = new MxMLParsedData();
 
-            try
-            {
-                var version = ((JObject)data["?xml"])["@version"].Value<string>();
-                var encoding = ((JObject)data["?xml"])["@encoding"].Value<string>();
-                if (version == null || encoding == null)
-                    throw new Exception();
-
-                pObject.Encoding = encoding;
-                pObject.Version = version;
-
-            }
-            catch(Exception)
-            {
-                HelperUtility.LogError("Can't parse version and encoding ");
+            var headResult=ParseHeader(data, ref pObject);
+            if (!headResult)
                 return null;
-            }
-            foreach(var item in data)
-            {
-                var k = item.Key;
-                var v = ((JObject)item.Value)["@version"];
-                Console.WriteLine(v["version"]);
-                break;
-            }
 
-            return null;
+            var childernResult = ParseChildern(data,ref pObject);
+            if (!childernResult)
+                return null;
+
+            return pObject;
         }
-        private bool ParseHeader(JObject data,ref MxMLParsedData pObject)
+        private static bool ParseHeader(JObject data,ref MxMLParsedData pObject)
         {
             try
             {
@@ -109,6 +93,10 @@ namespace MxML.Parser
                 HelperUtility.LogError("Can't parse version and encoding ");
                 return false;
             }
+        }
+        private static bool ParseChildern(JObject data,ref MxMLParsedData pObject)
+        {
+            return true;
         }
     }
 }
