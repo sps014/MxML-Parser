@@ -61,12 +61,26 @@ namespace MxML.Parser
             var data = JObject.Parse(json);
             return JsonDataToMxMLParsed(data);
         }
-        public static MxMLParsedData JsonDataToMxMLParsed(JObject data)
+        private static MxMLParsedData JsonDataToMxMLParsed(JObject data)
         {
-            var isHeaderMatch = true;
+            MxMLParsedData pObject = new MxMLParsedData();
 
-            var version = ((JObject)data["?xml"])["@version"].Value<string>();
-            var encoding = ((JObject)data["?xml"])["@encoding"].Value<string>();
+            try
+            {
+                var version = ((JObject)data["?xml"])["@version"].Value<string>();
+                var encoding = ((JObject)data["?xml"])["@encoding"].Value<string>();
+                if (version == null || encoding == null)
+                    throw new Exception();
+
+                pObject.Encoding = encoding;
+                pObject.Version = version;
+
+            }
+            catch(Exception)
+            {
+                HelperUtility.LogError("Can't parse version and encoding ");
+                return null;
+            }
             foreach(var item in data)
             {
                 var k = item.Key;
@@ -75,14 +89,26 @@ namespace MxML.Parser
                 break;
             }
 
+            return null;
+        }
+        private bool ParseHeader(JObject data,ref MxMLParsedData pObject)
+        {
+            try
+            {
+                var version = ((JObject)data["?xml"])["@version"].Value<string>();
+                var encoding = ((JObject)data["?xml"])["@encoding"].Value<string>();
+                if (version == null || encoding == null)
+                    throw new Exception();
 
-            if (!isHeaderMatch)
+                pObject.Encoding = encoding;
+                pObject.Version = version;
+                return true;
+            }
+            catch (Exception)
             {
                 HelperUtility.LogError("Can't parse version and encoding ");
-                return null;
+                return false;
             }
-
-            return null;
         }
     }
 }
