@@ -42,8 +42,6 @@ namespace MxML.Parser
                     return str.Replace(cdata, "\n");
 
             return str;
-
-
         }
         private static string RemovedNamespace(string str)
         {
@@ -53,6 +51,10 @@ namespace MxML.Parser
                     return str.Replace(match.Groups[0].Value, "");
 
             return str;
+        }
+        private static void InlineFunctions(string str)
+        {
+            //\W\w*\([\w|.|,|\s*|=']*\)
         }
         private static string ReadFile(string path)
         {
@@ -68,9 +70,6 @@ namespace MxML.Parser
             sw.Write(str);
             sw.Close();
         }
-        private static void InlineFunctions(string str)
-        {
-            //\W\w*\([\w|.|,|\s*|=']*\)
-        }
+
     }
 }
