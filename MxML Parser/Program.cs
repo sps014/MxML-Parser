@@ -26,7 +26,9 @@ $$ |      $$ |\$$$$$$$\ $$  /\$$\       $$$$$$$$\       $$  /   \$$ |$$ |  $$ |\
 \__|      \__| \_______|\__/  \__|      \________|      \__/     \__|\__|  \__| \______/ \__|     \__|
                                                   
 
-                                Developers:Shivendra,Raghav                                                                                                      
+
+                                                Team Sonic
+                                Developers:Shivendra,Raghav [Codechef Hackathon]                                                                                                   
 
 
 
