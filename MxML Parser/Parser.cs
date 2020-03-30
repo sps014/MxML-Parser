@@ -47,7 +47,8 @@ namespace MxML.Parser
         {
             MxMLParsedData result = ParseChildern(path);
 
-            //For the first line get the Version
+            result.Path = path;
+
             return result;
         }
 
@@ -55,10 +56,18 @@ namespace MxML.Parser
         private static MxMLParsedData ParseChildern(string path)
         {
             XmlDocument document = new XmlDocument();
-            document.Load(path);
+            JObject data = null;
+            try
+            {
+                document.Load(path);
 
-            string json=JsonConvert.SerializeXmlNode(document);
-            var data = JObject.Parse(json);
+                string json = JsonConvert.SerializeXmlNode(document);
+                data = JObject.Parse(json);
+            }
+            catch(Exception e)
+            {
+                HelperUtility.LogError(e.Message);
+            }
             return JsonDataToMxMLParsed(data);
         }
         private static MxMLParsedData JsonDataToMxMLParsed(JObject data)
