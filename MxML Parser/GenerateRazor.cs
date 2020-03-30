@@ -68,5 +68,9 @@ namespace MxML.Parser
             sw.Write(str);
             sw.Close();
         }
+        private static void InlineFunctions(string str)
+        {
+            //\W\w*\([\w|.|,|\s*|=']*\)
+        }
     }
 }
