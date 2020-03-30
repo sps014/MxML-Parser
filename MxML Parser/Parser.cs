@@ -11,10 +11,7 @@ namespace MxML.Parser
 {
     public class Parser
     {
-        public static void Main(string[] args)
-        {
-            ParseData(@"C:\Users\shive\Desktop\loginscreen\flex");
-        }
+        
         public static MxMLParsedData[] ParseData(string path)
         {
             HelperUtility.LogInitiation($"Started Parsing files of Path:{path}");
