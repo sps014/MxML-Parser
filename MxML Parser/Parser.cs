@@ -120,9 +120,14 @@ namespace MxML.Parser
             }
             return true;
         }
-        private static ChildNode SolveChildNode(JObject node)
+        private static ChildNode SolveChildNode(JObject data)
         {
-            return null;
+            ChildNode node = new ChildNode();
+            foreach(var n in data)
+            {
+                Console.WriteLine(n.Key);
+            }
+            return node;
         }
     }
 }
