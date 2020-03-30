@@ -6,6 +6,8 @@ using System.Text.RegularExpressions;
 using Helpers;
 using System.Xml;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Text.Json;
 
 namespace MxML.Parser
 {
@@ -43,53 +45,45 @@ namespace MxML.Parser
         }
         private static MxMLParsedData ParseSingleMxML(string path)
         {
-            MxMLParsedData result = new MxMLParsedData();
-            StreamReader reader = new StreamReader(path);
-
-            //get version info
-            var isHeaderMatch = IsCorrectHeader(reader.ReadLine());
-            if (!isHeaderMatch)
-            {
-                HelperUtility.LogError("Can't parse version and encoding ");
-                return null;
-            }
-
-            //1st one is version,encoding
-            result.Version = "1.0";
-            result.Encoding = "utf-8";
-
-            string lines = reader.ReadToEnd();
-            result.Child = ParseChildern(path);
-
-            reader.Close();
+            MxMLParsedData result = ParseChildern(path);
 
             //For the first line get the Version
             return result;
         }
 
 
-        private static bool IsCorrectHeader(string line)
-        {
-            //<?xml version="1.0" encoding="utf-8"?>
-            
-            if(line.IndexOf("version")==-1||line.IndexOf("encoding")==-1)
-            {
-                return false;
-            }
-
-            string pattern= @"<\?xml\s*\w*=\W[\w.]*\W\s*[\w]*=\W[\w-]*\W\?>";
-            return Regex.IsMatch(line, pattern);
-        }
-        private static ChildNode ParseChildern(string path)
+        private static MxMLParsedData ParseChildern(string path)
         {
             XmlDocument document = new XmlDocument();
             document.Load(path);
 
             string json=JsonConvert.SerializeXmlNode(document);
+            var data = JObject.Parse(json);
+            return JsonDataToMxMLParsed(data);
+        }
+        public static MxMLParsedData JsonDataToMxMLParsed(JObject data)
+        {
+            var isHeaderMatch = true;
+
+            var version = ((JObject)data["?xml"])["@version"].Value<string>();
+            var encoding = ((JObject)data["?xml"])["@encoding"].Value<string>();
+            foreach(var item in data)
+            {
+                var k = item.Key;
+                var v = ((JObject)item.Value)["@version"];
+                Console.WriteLine(v["version"]);
+                break;
+            }
+
+
+            if (!isHeaderMatch)
+            {
+                HelperUtility.LogError("Can't parse version and encoding ");
+                return null;
+            }
 
             return null;
         }
-
     }
 }
 
