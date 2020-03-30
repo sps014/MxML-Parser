@@ -131,13 +131,56 @@ namespace MxML.Parser
                     Parameters.Add(RemoveAtRateSymbol(n.Key), n.Value.Value<string>());
                 else
                 {
-                   // var child = SolveChildNode((JObject)n.Value,n.Key, ref node);
+                    if(n.Key=="mx:script")
+                    {
+                        continue;
+                    }
+                    try
+                    { 
+                        var obj = (JObject)n.Value;
+                        var cn = SolveChildNode(obj, n.Key, ref node);
+                        if (cn != null)
+                            children.Add(cn);
+                    }
+                    catch(Exception)
+                    {
+                        var subList = (JArray)n.Value;
+                        var cn=SolveChildNode(subList, n.Key,ref node);
+                        if (cn != null)
+                            children.Add(cn);
+                    }
+
+                    //if (child != null)
+                    //    children.Add(child);
                 }
             }
             node.Parameters = Parameters;
+            node.Children = children.ToArray();
             return node;
         }
-        private static ChildNode SolveChildNode(JObject data,string name,ref ChildNode parent)
+        private static ChildNode SolveChildNode(JArray data,string name,ref ChildNode parent)
+        {
+            ChildNode node = new ChildNode();
+            //Dictionary<string, string> Parameters = new Dictionary<string, string>();
+            //List<ChildNode> children = new List<ChildNode>();
+
+            //foreach (var n in data)
+            //{
+            //    if (isParameter(n.))
+            //        Parameters.Add(RemoveAtRateSymbol(n.Key), n.Value.Value<string>());
+            //    else
+            //    {
+            //        var child = SolveChildNode((JObject)n.Value, n.Key, ref node);
+            //        if (child != null)
+            //            children.Add(child);
+            //    }
+            //}
+            //node.Parameters = Parameters;
+            //node.Children = children.ToArray();
+
+            return node;
+        }
+        private static ChildNode SolveChildNode(JObject data, string name, ref ChildNode parent)
         {
             ChildNode node = new ChildNode();
             Dictionary<string, string> Parameters = new Dictionary<string, string>();
@@ -149,11 +192,25 @@ namespace MxML.Parser
                     Parameters.Add(RemoveAtRateSymbol(n.Key), n.Value.Value<string>());
                 else
                 {
-                    var child = SolveChildNode((JObject)n.Value, n.Key, ref node);
+                    try
+                    {
+                        var obj = (JObject)n.Value;
+                        var cn = SolveChildNode(obj, n.Key, ref node);
+                        if (cn != null)
+                            children.Add(cn);
+                    }
+                    catch (Exception)
+                    {
+                        var subList = (JArray)n.Value;
+                        var cn = SolveChildNode(subList, n.Key, ref node);
+                        if (cn != null)
+                            children.Add(cn);
+                    }
+
                 }
             }
             node.Parameters = Parameters;
-
+            node.Children = children.ToArray();
             return node;
         }
         private static bool isParameter(string str)
