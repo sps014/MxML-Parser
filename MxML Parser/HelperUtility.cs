@@ -63,5 +63,11 @@ namespace Helpers
             Console.WriteLine(success);
             Console.ForegroundColor = ConsoleColor.White;
         }
+        public static void LogCyan(object success)
+        {
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(success);
+            Console.ForegroundColor = ConsoleColor.White;
+        }
     }
 }

@@ -2,10 +2,6 @@
 using System.IO;
 using System.Collections.Generic;
 using Helpers;
-using System.Xml;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System.Text.Json;
 
 namespace MxML.Parser
 {
@@ -21,9 +17,10 @@ namespace MxML.Parser
             var files=HelperUtility.GetAllFilesOfExtension(path, ".mxml");
             foreach (string file in files)
             {
+                HelperUtility.LogStatus($"started parsing {file}");
+
                 GenerateRazor.GetRazorString(file);
 
-                HelperUtility.LogStatus($"started parsing {file}");
                
             }
 
