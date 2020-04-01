@@ -1,7 +1,16 @@
 ﻿@page "/"
 
 <h1>Hello, world!</h1>
-
+<p>@s</p>
+<button @onclick="IntCpon"></button>
 Welcome to your new app.
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+@code
+{
+    int s=0;
+    private void IntCpon()
+    {
+        s++;
+        StateHasChanged();
+    }
+}
