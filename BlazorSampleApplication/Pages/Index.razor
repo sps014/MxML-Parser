@@ -1,21 +1,15 @@
 ﻿@page "/"
 @using mx;
 
-<h1>Hello, world!</h1>
-<p>@s</p>
 
-<button @onclick="IntCpon"></button>
 
-<mx.Label id="userLabel" text="@mx.Resource(bundle='messages', key='login.username')"
+<mx.Label id="userLabel" text="UserName"
           x="29"
           y="67"
           automationName="lblUserName" />
-@code
-{
-    int s=0;
-    private void IntCpon()
-    {
-        s++;
-        StateHasChanged();
-    }
-}
+
+<mx.TextInput id="login" maxChars="25" text="here some text"
+    x="121"
+    y="65"
+    styleName="TextInput"
+    automationName="txtUserName"/>
