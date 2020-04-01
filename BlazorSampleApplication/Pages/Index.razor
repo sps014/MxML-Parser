@@ -2,20 +2,21 @@
 @using mx;
 
 
+    <mx.TitleWindow title="PAC MAN BLAH" height="400" width="500">
+        <mx.Label id="userLabel" text="UserName"
+                  x="29"
+                  y="67"
+                  automationName="lblUserName" />
 
-<mx.Label id="userLabel" text="UserName"
-          x="29"
-          y="67"
-          automationName="lblUserName" />
+        <mx.TextInput id="login" maxChars="25" text="here some text"
+                      x="121"
+                      y="65"
+                      styleName="TextInput"
+                      automationName="txtUserName" />
 
-<mx.TextInput id="login" maxChars="25" text="here some text"
-              x="121"
-              y="65"
-              styleName="TextInput"
-              automationName="txtUserName" />
-
-<mx.Button id="okButton" label="LogIn"
-    x="187"
-    y="149"
-    styleName="Button"
-    automationName="btnLogin" />
+        <mx.Button id="okButton" label="LogIn"
+                   x="187"
+                   y="149"
+                   styleName="Button"
+                   automationName="btnLogin" />
+    </mx.TitleWindow>

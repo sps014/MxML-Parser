@@ -1,6 +1,6 @@
 ﻿
 
-<input @bind-value="text" style="position:absolute;left:@(x)px;top:@(y)px" id="@id" maxlength="@maxChars"/>
+<input @bind-value="text" style="position:absolute;left:@(x)px;top:@(y)px;@style" id="@id" maxlength="@maxChars"/>
 
 @code
 {
@@ -18,4 +18,6 @@
     public string styleName { get; set; }
     [Parameter]
     public string automationName { get; set; }
+    [Parameter]
+    public string style { get; set; }
 }

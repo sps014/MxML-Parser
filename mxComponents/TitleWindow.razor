@@ -1,0 +1,40 @@
+﻿@*<mx.TitleWindow title="PACS Login [IN CONFIDENCE]" showCloseButton="false"
+                layout="absolute"
+                height="202"
+                width="370"
+                styleName="Canvas"
+                fontSize="11"
+                automationName="ComponentLoginScreen"
+                horizontalAlign="center"
+                verticalAlign="middle" creationComplete="init(event)">*@
+
+
+    <div style="position:absolute;left:@(x)px;top:@(y)px; width: @(width)px; height:@(width)px; border-color: blue; border-width: 2px; border-style: solid; @style">
+        <div style="height:7%;background-color:darkslateblue">
+            <p align="center" style="color:white">@title</p>
+        </div>
+        <div style="height:93%;background-color:aquamarine">
+            @ChildContent
+        </div>
+    </div>
+
+@code
+{
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    [Parameter]
+    public int width { get; set; }
+    [Parameter]
+    public int height { get; set; }
+    [Parameter]
+    public int x { get; set; }
+    [Parameter]
+    public int y { get; set; }
+    [Parameter]
+    public int fontSize { get; set; }
+    [Parameter]
+    public string title { get; set; }
+    [Parameter]
+    public string style { get; set; }
+
+}
