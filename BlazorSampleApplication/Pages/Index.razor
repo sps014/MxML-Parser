@@ -1,10 +1,15 @@
 ﻿@page "/"
+@using mx;
 
 <h1>Hello, world!</h1>
 <p>@s</p>
-<button @onclick="IntCpon"></button>
-Welcome to your new app.
 
+<button @onclick="IntCpon"></button>
+
+<mx.Label id="userLabel" text="@mx.Resource(bundle='messages', key='login.username')"
+          x="29"
+          y="67"
+          automationName="lblUserName" />
 @code
 {
     int s=0;

@@ -1,0 +1,17 @@
+﻿
+<p id="@id" style="position:absolute;left:@x;top:@y;">@text</p>
+
+
+@code
+{
+    [Parameter]
+    public string text { get; set; }
+    [Parameter]
+    public int x { get; set; } = 0;
+    [Parameter]
+    public int y { get; set; } = 0;
+    [Parameter]
+    public string id { get; set; }
+    [Parameter] 
+    public string automationName { get; set; }
+}

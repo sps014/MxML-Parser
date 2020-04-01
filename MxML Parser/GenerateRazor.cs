@@ -62,13 +62,11 @@ namespace MxML.Parser
         {
             //\W\w*\([\w|.|,|\s*|=']*\)
         }
-        private static string ReadFile(string path)
+
+        private static Dictionary<string,string> GetResourcesDictionary()
         {
-            StreamReader reader = new StreamReader(path);
-            _ = reader.ReadLine();
-            string xmlBody = reader.ReadToEnd();
-            reader.Close();
-            return xmlBody;
+            //@Resource\((.?)*\)
+            return null;
         }
         private static void WriteFile(MxMLParsedData data)
         {
@@ -79,6 +77,15 @@ namespace MxML.Parser
         private static string NameWithoutExtension(string str)
         {
             return str.Replace(".mxml", ".razor");
+        }
+
+        private static string ReadFile(string path)
+        {
+            StreamReader reader = new StreamReader(path);
+            _ = reader.ReadLine();
+            string xmlBody = reader.ReadToEnd();
+            reader.Close();
+            return xmlBody;
         }
 
     }
