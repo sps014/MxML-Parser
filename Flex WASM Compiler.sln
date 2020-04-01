@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.29924.181
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MxML Parser", "MxML Parser\MxML Parser.csproj", "{FD339F53-6C80-4730-8178-C0F739A19CD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorSampleApplication", "BlazorSampleApplication\BlazorSampleApplication.csproj", "{09B400D8-1493-4FF1-8AF1-3CE7998F2AEA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorSampleApplication", "BlazorSampleApplication\BlazorSampleApplication.csproj", "{09B400D8-1493-4FF1-8AF1-3CE7998F2AEA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mxComponents", "mxComponents\mxComponents.csproj", "{D7B7AA9F-9296-4F3D-B078-D6FFE58A5E03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mxComponents", "mxComponents\mxComponents.csproj", "{D7B7AA9F-9296-4F3D-B078-D6FFE58A5E03}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
