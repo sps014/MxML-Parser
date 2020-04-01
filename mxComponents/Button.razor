@@ -1,0 +1,20 @@
+﻿
+<button style="position:absolute;left:@(x)px;top:@(y)px" id="@id">@label</button>
+
+@code
+{
+    [Parameter]
+    public string label { get; set; }
+    [Parameter]
+    public string id { get; set; }
+    [Parameter]
+    public int maxChars { get; set; }
+    [Parameter]
+    public int x { get; set; }
+    [Parameter]
+    public int y { get; set; }
+    [Parameter]
+    public string styleName { get; set; }
+    [Parameter]
+    public string automationName { get; set; }
+}
