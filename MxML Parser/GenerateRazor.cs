@@ -18,6 +18,7 @@ namespace MxML.Parser
 
             mxMLParsed.ActionCode = ParseCDATA(xml);
             mxMLParsed.RazorCode = ParseTags(xml, mxMLParsed.ActionCode);
+            mxMLParsed.RazorCode = RemoveTransitions(mxMLParsed.RazorCode);
             mxMLParsed.RazorCode = ReplaceColons(mxMLParsed.RazorCode);
             mxMLParsed.Path = path;
 
