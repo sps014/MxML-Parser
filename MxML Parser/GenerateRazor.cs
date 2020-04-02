@@ -20,7 +20,9 @@ namespace MxML.Parser
             mxMLParsed.RazorCode = ParseTags(xml, mxMLParsed.ActionCode);
             mxMLParsed.RazorCode = FilterTransition(mxMLParsed.RazorCode);
             mxMLParsed.RazorCode = FilterStates(mxMLParsed.RazorCode);
+            mxMLParsed.RazorCode = FilterRemoteObject(mxMLParsed.RazorCode);
             mxMLParsed.RazorCode = ReplaceColons(mxMLParsed.RazorCode);
+            mxMLParsed.RazorCode = FilterExtraWhiteSpace(mxMLParsed.RazorCode);
             mxMLParsed.Path = path;
 
             WriteFile(mxMLParsed);
@@ -58,7 +60,8 @@ namespace MxML.Parser
         }
         private static string FilterTransition(string str)
         {
-            var match = Regex.Match(str, @"(<mx:Transitions>(.|\n)*?<\/mx:Transitions>)", RegexOptions.IgnoreCase|RegexOptions.Multiline);
+            var match = Regex.Match(str, @"(<mx:Transitions>(.|\n)*?<\/mx:Transitions>)",
+                RegexOptions.IgnoreCase|RegexOptions.Multiline);
             if (match.Groups.Count >= 1)
                 if (match.Groups[0].Value.Length > 0)
                     return str.Replace(match.Groups[0].Value, "");
@@ -75,6 +78,28 @@ namespace MxML.Parser
 
             return str;
         }
+        private static string FilterExtraWhiteSpace(string str)
+        {
+            var match = Regex.Match(str, @"^(?:[\t ]*(?:\r?\n|\r))+",
+                RegexOptions.IgnoreCase | RegexOptions.Multiline);
+            if (match.Groups.Count >= 1)
+                if (match.Groups[0].Value.Length > 0)
+                    return str.Replace(match.Groups[0].Value, "");
+
+            return str;
+        }
+        private static string FilterRemoteObject(string str)
+        {
+            var match = Regex.Match(str, @"(<mx:RemoteObject(.|\n)*?<\/mx:RemoteObject>)",
+                RegexOptions.IgnoreCase | RegexOptions.Multiline);
+            if (match.Groups.Count >= 1)
+                if (match.Groups[0].Value.Length > 0)
+                    return str.Replace(match.Groups[0].Value, "");
+
+            return str;
+        }
+
+
         private static string ReplaceColons(string razor,string text=".")
         {
             return razor.Replace(":",text);
