@@ -10,6 +10,7 @@ namespace MxML.Parser
         private static Dictionary<string, string> InPlaceReplacements = new Dictionary<string, string>()
         {
             { "String","string" },
+            {"import","using" },
             {"boolean","bool" },
             {"final",string.Empty },
         };
@@ -23,6 +24,11 @@ namespace MxML.Parser
             var s=reader.ReadToEnd();
             reader.Close();
             return s;
+        }
+        private static string FilterCheckedException()
+        {
+            //[^@](throws\s(\s*\w+,?)*\s*)\{ at group 1
+            return null;
         }
     }
 }
