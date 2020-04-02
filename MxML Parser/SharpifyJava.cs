@@ -25,9 +25,14 @@ namespace MxML.Parser
             reader.Close();
             return s;
         }
-        private static string FilterCheckedException()
+        private static string FilterCheckedException( string str)
         {
             //[^@](throws\s(\s*\w+,?)*\s*)\{ at group 1
+            return null;
+        }
+        private static string JavaPackageToNamespace(string str)
+        {
+            // "package\s+([\w.]*);" with name on group 1
             return null;
         }
     }
