@@ -7,6 +7,12 @@ namespace MxML.Parser
 {
     public static class SharpifyJava
     {
+        private static Dictionary<string, string> InPlaceReplacements = new Dictionary<string, string>()
+        {
+            { "String","string" },
+            {"final",string.Empty },
+            {"throws","throw new " }
+        };
         public static string GetSharpified(string path)
         {
             return null;
