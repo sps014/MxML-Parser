@@ -1,24 +1,38 @@
 ﻿@*<mx.TitleWindow title="PACS Login [IN CONFIDENCE]" showCloseButton="false"
-                layout="absolute"
-                height="202"
-                width="370"
-                styleName="Canvas"
-                fontSize="11"
-                automationName="ComponentLoginScreen"
-                horizontalAlign="center"
-                verticalAlign="middle" creationComplete="init(event)">*@
+    layout="absolute"
+    height="202"
+    width="370"
+    styleName="Canvas"
+    fontSize="11"
+    automationName="ComponentLoginScreen"
+    horizontalAlign="center"
+    verticalAlign="middle" creationComplete="init(event)">*@
 
 
-    <div style="position:absolute;left:@(x)px;top:@(y)px; width: @(width)px; height:@(width)px; border-color: blue; border-width: 2px; border-style: solid; @style">
-        <div style="height:7%;background-color:darkslateblue">
-            <p align="center" style="color:white">@title</p>
-        </div>
-        <div style="height:93%;background-color:aquamarine">
-            @ChildContent
-        </div>
+<div style="        
+        position: absolute;
+        left: @(x)px;
+        top: @(y)px;
+        width: @(width)px;
+        height: @(height)px;
+        border-color: blue;
+        border-width: 2px;
+        border-style: solid; @style">
+    <div style="height: 7%; background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);">
+        <p align="center" style="color:white">@title</p>
     </div>
+    <div style="        height: 93%;
+        background: #74ebd5; /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #74ebd5, #acb6e5); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #74ebd5, #acb6e5);
+">
+        @ChildContent
+    </div>
+</div>
+
 
 @code
+
 {
     [Parameter]
     public RenderFragment ChildContent { get; set; }
