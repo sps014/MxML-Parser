@@ -18,7 +18,8 @@ namespace MxML.Parser
 
             mxMLParsed.ActionCode = ParseCDATA(xml);
             mxMLParsed.RazorCode = ParseTags(xml, mxMLParsed.ActionCode);
-            mxMLParsed.RazorCode = RemoveTransitions(mxMLParsed.RazorCode);
+            mxMLParsed.RazorCode = FilterTransition(mxMLParsed.RazorCode);
+            mxMLParsed.RazorCode = FilterStates(mxMLParsed.RazorCode);
             mxMLParsed.RazorCode = ReplaceColons(mxMLParsed.RazorCode);
             mxMLParsed.Path = path;
 
@@ -55,9 +56,19 @@ namespace MxML.Parser
 
             return str;
         }
-        private static string RemoveTransitions(string str)
+        private static string FilterTransition(string str)
         {
             var match = Regex.Match(str, @"(<mx:Transitions>(.|\n)*?<\/mx:Transitions>)", RegexOptions.IgnoreCase|RegexOptions.Multiline);
+            if (match.Groups.Count >= 1)
+                if (match.Groups[0].Value.Length > 0)
+                    return str.Replace(match.Groups[0].Value, "");
+
+            return str;
+        }
+        private static string FilterStates(string str)
+        {
+            var match = Regex.Match(str, @"(<mx:States>(.|\n)*?<\/mx:States>)",
+                RegexOptions.IgnoreCase | RegexOptions.Multiline);
             if (match.Groups.Count >= 1)
                 if (match.Groups[0].Value.Length > 0)
                     return str.Replace(match.Groups[0].Value, "");
