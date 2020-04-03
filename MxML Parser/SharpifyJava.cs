@@ -22,6 +22,7 @@ namespace MxML.Parser
             string java = ReadJavaFile(path);
             string fjava=FilterCheckedException(java);
             fjava = JavaPackageToNamespace(fjava);
+            fjava = AttributeParser(fjava);
            //fjava = FilterExtraWhiteSpace(fjava);
             WriteFile(path,fjava);
             return fjava;
@@ -58,7 +59,7 @@ namespace MxML.Parser
             string v = "\r\n";
             foreach(Match m in matches)
             {
-                v += "using "+m.Groups[1].Value+"\r\n";
+                v += "using "+m.Groups[1].Value+";\r\n";
                 str=str.Replace(m.Groups[0].Value,string.Empty);
             }
 
@@ -82,6 +83,28 @@ namespace MxML.Parser
             if (match.Groups.Count >= 1)
                 if (match.Groups[0].Value.Length > 0)
                     return str.Replace(match.Groups[0].Value, "");
+
+            return str;
+        }
+        private static string AttributeParser(string str)
+        {
+            var matches = Regex.Matches(str, @"@(\w+)((.*)?)?");
+            foreach(Match m in matches)
+            {
+                if(m.Groups.Count>3)
+                {
+                    string atr = "[" + m.Groups[1].Value + m.Groups[2].Value + "]";
+                    atr=atr.Replace("\r", "");
+                    str=str.Replace(m.Groups[0].Value, atr);
+                }
+                else
+                {
+
+                    string atr = "[" + m.Groups[1].Value +  "]";
+                    atr = atr.Replace("\r", "");
+                    str = str.Replace(m.Groups[0].Value, atr);
+                }
+            }
 
             return str;
         }
