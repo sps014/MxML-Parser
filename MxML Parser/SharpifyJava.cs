@@ -23,7 +23,7 @@ namespace MxML.Parser
             string fjava=FilterCheckedException(java);
             fjava = JavaPackageToNamespace(fjava);
             fjava = AttributeParser(fjava);
-           //fjava = FilterExtraWhiteSpace(fjava);
+            fjava = FilterExtraWhiteSpace(fjava);
             WriteFile(path,fjava);
             return fjava;
         }
@@ -78,11 +78,10 @@ namespace MxML.Parser
         }
         private static string FilterExtraWhiteSpace(string str)
         {
-            var match = Regex.Match(str, @"^(?:[\t ]*(?:\r?\n|\r))+",
-                RegexOptions.IgnoreCase | RegexOptions.Multiline);
+            var match = Regex.Match(str, @"^\s*$",RegexOptions.Multiline);
             if (match.Groups.Count >= 1)
                 if (match.Groups[0].Value.Length > 0)
-                    return str.Replace(match.Groups[0].Value, "");
+                    return str.Replace(match.Groups[0].Value, "\r\n");
 
             return str;
         }
