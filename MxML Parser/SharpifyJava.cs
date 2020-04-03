@@ -35,5 +35,10 @@ namespace MxML.Parser
             // "package\s+([\w.]*);" with name on group 1
             return null;
         }
+        private static string javaFor2ForEach(string str)
+        {
+            //for\s*\((\w*)\s+(\w*)\s*:\s*(\w*) gp 1 type gp 2 name gp3 list
+            return null;
+        }
     }
 }
