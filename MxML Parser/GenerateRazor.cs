@@ -104,7 +104,7 @@ namespace MxML.Parser
         {
             return razor.Replace(":",text);
         }
-        private static void InlineFunctions(string str)
+        private static void InlineFunctions(string str) 
         {
             //\W\w*\([\w|.|,|\s*|=']*\)
         }

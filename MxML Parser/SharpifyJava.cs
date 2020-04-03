@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace MxML.Parser
 {
@@ -16,6 +17,8 @@ namespace MxML.Parser
         };
         public static string GetSharpified(string path)
         {
+            string java = ReadJavaFile(path);
+            FilterCheckedException(java);
             return null;
         }
         private static string ReadJavaFile(string path)
@@ -28,6 +31,11 @@ namespace MxML.Parser
         private static string FilterCheckedException( string str)
         {
             //[^@](throws\s(\s*\w+,?)*\s*)\{ at group 1
+            var matches = Regex.Matches(str, @"[^@](throws\s(\s*\w+,?)*\s*)");
+            foreach(var m in matches)
+            {
+
+            }
             return null;
         }
         private static string JavaPackageToNamespace(string str)

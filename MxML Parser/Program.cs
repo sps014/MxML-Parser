@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Helpers;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -11,6 +12,15 @@ namespace MxML.Parser
             PrintLogo();
 
             Parser.ParseData(@"C:\Users\shive\Desktop\loginscreen\flex");
+            ParseJava();
+        }
+        private static void ParseJava()
+        {
+           var files=HelperUtility.GetAllFilesOfExtension(@"C:\Users\shive\Desktop\loginscreen\",".java");
+            foreach(var m in files)
+            {
+                SharpifyJava.GetSharpified(m);
+            }
         }
         private static void PrintLogo()
         {
