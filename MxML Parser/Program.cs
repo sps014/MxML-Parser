@@ -16,7 +16,10 @@ namespace MxML.Parser
         }
         private static void ParseJava()
         {
-           var files=HelperUtility.GetAllFilesOfExtension(@"C:\Users\shive\Desktop\loginscreen\",".java");
+            string path = @"C:\Users\shive\Desktop\loginscreen\";
+            HelperUtility.LogInitiation($"Started Parsing java files of Path:{path}");
+
+            var files =HelperUtility.GetAllFilesOfExtension(path, ".java");
             foreach(var m in files)
             {
                 SharpifyJava.GetSharpified(m);
