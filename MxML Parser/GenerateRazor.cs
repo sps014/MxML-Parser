@@ -9,6 +9,7 @@ namespace MxML.Parser
 {
     public static class GenerateRazor
     {
+        private static string namespaces = "@using mx;\r\n\r\n";
         public static MxMLParsedData GetRazorString(string path)
         {
             MxMLParsedData mxMLParsed = new MxMLParsedData();
@@ -23,6 +24,7 @@ namespace MxML.Parser
             mxMLParsed.RazorCode = FilterRemoteObject(mxMLParsed.RazorCode);
             mxMLParsed.RazorCode = ReplaceColons(mxMLParsed.RazorCode);
             mxMLParsed.RazorCode = FilterExtraWhiteSpace(mxMLParsed.RazorCode);
+            mxMLParsed.RazorCode = namespaces + mxMLParsed.RazorCode;
             mxMLParsed.Path = path;
 
             WriteFile(mxMLParsed);

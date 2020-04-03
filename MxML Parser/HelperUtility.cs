@@ -69,5 +69,9 @@ namespace Helpers
             Console.WriteLine(success);
             Console.ForegroundColor = ConsoleColor.White;
         }
+        public static string NameWithoutExtension(string str,string append=".razor")
+        {
+            return str.Replace(".mxml", ".razor");
+        }
     }
 }

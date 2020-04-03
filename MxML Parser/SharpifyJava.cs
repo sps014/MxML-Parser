@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Helpers;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -18,8 +19,9 @@ namespace MxML.Parser
         public static string GetSharpified(string path)
         {
             string java = ReadJavaFile(path);
-            FilterCheckedException(java);
-            return null;
+            string fjava=FilterCheckedException(java);
+
+            return fjava;
         }
         private static string ReadJavaFile(string path)
         {
@@ -28,15 +30,21 @@ namespace MxML.Parser
             reader.Close();
             return s;
         }
+        private static void WriteFile(string path,string data)
+        {
+            StreamWriter sw = new StreamWriter(HelperUtility.na(data.Path));
+            sw.Write(data.RazorCode);
+            sw.Close();
+        }
         private static string FilterCheckedException( string str)
         {
             //[^@](throws\s(\s*\w+,?)*\s*)\{ at group 1
             var matches = Regex.Matches(str, @"[^@](throws\s(\s*\w+,?)*\s*)");
-            foreach(var m in matches)
+            foreach(Match m in matches)
             {
-
+                str = str.Replace(m.Groups[0].Value, string.Empty);
             }
-            return null;
+            return str;
         }
         private static string JavaPackageToNamespace(string str)
         {
