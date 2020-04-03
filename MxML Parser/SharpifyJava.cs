@@ -55,11 +55,11 @@ namespace MxML.Parser
         private static string JavaPackageToNamespace(string str)
         {
             //"package\s+([\w.]*);" with name on group 1
-            var matches = Regex.Matches(str, @"import\s+([\w.]*);");
-            string v = "\r\n";
+            var matches = Regex.Matches(str, @"import\s+([\w.]*);\n?");
+            string v = "";
             foreach(Match m in matches)
             {
-                v += "using "+m.Groups[1].Value+";\r\n";
+                v += "using "+m.Groups[1].Value+";\r";
                 str=str.Replace(m.Groups[0].Value,string.Empty);
             }
 
@@ -69,10 +69,11 @@ namespace MxML.Parser
                 if(match.Groups[1].Length>0)
                 {
                     var package = match.Groups[1].Value;
-                    str = str.Replace(match.Groups[0].Value, $"namespace {package}\r\n" + "{\r\n"+v);
+                    str = str.Replace(match.Groups[0].Value, $"namespace {package}\r\n" + "{\r\n");
                     str += "\r\n}";
                 }
             }
+            str = v + "\r\n"+str;
 
             return str;
         }
