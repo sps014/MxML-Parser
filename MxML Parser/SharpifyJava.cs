@@ -25,6 +25,7 @@ namespace MxML.Parser
             fjava = javaFor2ForEach(fjava);
             fjava = DictionaryReplace(fjava);
             fjava = Java2CSharpInheritance(fjava);
+            fjava = Java2CSharpInterfaceInheritance(fjava);
             fjava = FilterExtraWhiteSpace(fjava);
             WriteFile(path,fjava);
             return fjava;
@@ -144,6 +145,24 @@ namespace MxML.Parser
                     constructed += ":"+ m.Groups[5].Value;
 
                 str = str.Replace(m.Groups[0].Value, "class " + constructed);
+
+            }
+            return str;
+        }
+        private static string Java2CSharpInterfaceInheritance(string str)
+        {
+            var matches = Regex.Matches(str, @"interface\s+(\w+)\s+(extends\s*(\w+)*)?\s*(implements\s+(\w+))?");
+            foreach (Match m in matches)
+            {
+                string constructed = m.Groups[1].Value;
+                if (m.Groups[2].Value.Length > 1 && m.Groups[4].Value.Length > 1)
+                    constructed += ":" + m.Groups[3].Value + "," + m.Groups[5].Value;
+                else if (m.Groups[2].Value.Length > 1)
+                    constructed += ":" + m.Groups[3].Value;
+                else if (m.Groups[4].Value.Length > 1)
+                    constructed += ":" + m.Groups[5].Value;
+
+                str = str.Replace(m.Groups[0].Value, "interface " + constructed);
 
             }
             return str;
