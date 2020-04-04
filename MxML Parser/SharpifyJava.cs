@@ -12,9 +12,8 @@ namespace MxML.Parser
         private static Dictionary<string, string> InPlaceReplacements = new Dictionary<string, string>()
         {
             { "String","string" },
-            {"import","using" },
             {"boolean","bool" },
-            {"final",string.Empty },
+            {"final ",string.Empty },
         };
         public static string GetSharpified(string path)
         {
@@ -23,6 +22,8 @@ namespace MxML.Parser
             string fjava=FilterCheckedException(java);
             fjava = JavaPackageToNamespace(fjava);
             fjava = AttributeParser(fjava);
+            fjava = javaFor2ForEach(fjava);
+            fjava = DictionaryReplace(fjava);
             fjava = FilterExtraWhiteSpace(fjava);
             WriteFile(path,fjava);
             return fjava;
@@ -111,7 +112,22 @@ namespace MxML.Parser
         private static string javaFor2ForEach(string str)
         {
             //for\s*\((\w*)\s+(\w*)\s*:\s*(\w*) gp 1 type gp 2 name gp3 list
-            return null;
+            var matches = Regex.Matches(str, @"for\s*\((\w*)\s+(\w*)\s*:\s*(\w*)");
+            foreach(Match m in matches)
+            {
+                string fe="foreach("+m.Groups[1].Value+"  "+m.Groups[2].Value+" in "+m.Groups[3].Value+")";
+                str = str.Replace(m.Groups[0].Value, fe);
+            }
+            return str;
+        }
+        private static string DictionaryReplace(string str)
+        {
+            foreach(var m in InPlaceReplacements)
+            {
+                str=str.Replace(m.Key, m.Value);
+            }
+
+            return str;
         }
     }
 }
