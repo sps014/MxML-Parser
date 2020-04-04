@@ -129,5 +129,9 @@ namespace MxML.Parser
 
             return str;
         }
+        private static string Java2CSharpInheeritance(string str)
+        {
+            return null;
+        }
     }
 }
