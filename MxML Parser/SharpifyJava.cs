@@ -24,6 +24,7 @@ namespace MxML.Parser
             fjava = AttributeParser(fjava);
             fjava = javaFor2ForEach(fjava);
             fjava = DictionaryReplace(fjava);
+            fjava = Java2CSharpInheritance(fjava);
             fjava = FilterExtraWhiteSpace(fjava);
             WriteFile(path,fjava);
             return fjava;
@@ -129,9 +130,23 @@ namespace MxML.Parser
 
             return str;
         }
-        private static string Java2CSharpInheeritance(string str)
+        private static string Java2CSharpInheritance(string str)
         {
-            return null;
+            var matches = Regex.Matches(str, @"class\s+(\w+)\s+(extends\s*(\w+)*)?\s*(implements\s+(\w+))?");
+            foreach(Match m in matches)
+            {
+                string constructed = m.Groups[1].Value;
+                if (m.Groups[2].Value.Length > 1 && m.Groups[4].Value.Length>1)
+                    constructed += ":" + m.Groups[3].Value+","+m.Groups[5].Value;
+                else if (m.Groups[2].Value.Length > 1)
+                    constructed += ":" + m.Groups[3].Value;
+                else if (m.Groups[4].Value.Length > 1)
+                    constructed += ":"+ m.Groups[5].Value;
+
+                str = str.Replace(m.Groups[0].Value, "class " + constructed);
+
+            }
+            return str;
         }
     }
 }
