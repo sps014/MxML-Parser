@@ -9,8 +9,9 @@ namespace MxML.Parser
     {
         public static ActionScript Parse2Csharp(ActionScript actionScript)
         {
-            var Data = CleanCDATA(actionScript.ActionCode);
+            actionScript.ActionCode = CleanCDATA(actionScript.ActionCode);
             actionScript.CSImports = GetNamespaces(ref actionScript);
+            actionScript = FilterExtraWhiteSpace(actionScript);
 
             return actionScript;
         }
@@ -33,11 +34,20 @@ namespace MxML.Parser
             foreach(Match m in matches)
             {
                 sb.Append("@using "+m.Groups[1].Value+";\n");
-                str.ActionCode.Replace(m.Groups[0].Value, string.Empty);
+                str.ActionCode=str.ActionCode.Replace(m.Groups[0].Value, string.Empty);
             }
 
             sb=sb.Replace(".*", string.Empty);
             return sb.ToString();
+        }
+        private static ActionScript FilterExtraWhiteSpace(ActionScript str)
+        {
+            var match = Regex.Match(str.ActionCode, @"^\s*$", RegexOptions.Multiline);
+            if (match.Groups.Count >= 1)
+                if (match.Groups[0].Value.Length > 0)
+                    str.ActionCode= str.ActionCode.Replace(match.Groups[0].Value, "\r\n");
+
+            return str;
         }
     }
 }

@@ -126,6 +126,9 @@ namespace MxML.Parser
             StreamWriter sw = new StreamWriter(NameWithoutExtension(data.Path));
             sw.Write(data.ActionScript.CSImports);
             sw.Write(data.RazorCode);
+            sw.Write("\n@code\n{");
+            sw.Write(data.ActionScript.ActionCode);
+            sw.Write("\n}");
             sw.Close();
         }
         private static string NameWithoutExtension(string str)
