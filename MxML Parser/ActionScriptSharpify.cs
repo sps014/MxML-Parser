@@ -15,6 +15,7 @@ namespace MxML.Parser
             actionScript = FilterExtraWhiteSpace(actionScript);
             ParseFields(ref actionScript);
             FunctionParameter(ref actionScript);
+            FunctionDefinition(ref actionScript);
             return actionScript;
         }
         private static string CleanCDATA(string str)
@@ -73,6 +74,19 @@ namespace MxML.Parser
                 var type = m.Groups[3].Value;
                     code.ActionCode = code.ActionCode.Replace(m.Groups[0].Value, $"{type} {name}");
             }
+        }
+        private static void FunctionDefinition(ref ActionScript code)
+        {
+            var matches = Regex.Matches(code.ActionCode, @"function\s+(\w+)(\((.|\n)*?\)\s*):(\w+)");
+            foreach (Match m in matches)
+            {
+                var name = m.Groups[1].Value;
+                var type = m.Groups[4].Value;
+                var param = m.Groups[2].Value;
+
+                code.ActionCode = code.ActionCode.Replace(m.Groups[0].Value,$"{type} {name}{param}");
+            }
+            code.ActionCode=code.ActionCode.Replace("function", string.Empty);
         }
     }
 }
