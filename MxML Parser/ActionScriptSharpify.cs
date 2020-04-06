@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -12,7 +13,7 @@ namespace MxML.Parser
             actionScript.ActionCode = CleanCDATA(actionScript.ActionCode);
             actionScript.CSImports = GetNamespaces(ref actionScript);
             actionScript = FilterExtraWhiteSpace(actionScript);
-
+            ParseFields(ref actionScript);
             return actionScript;
         }
         private static string CleanCDATA(string str)
@@ -48,6 +49,19 @@ namespace MxML.Parser
                     str.ActionCode= str.ActionCode.Replace(match.Groups[0].Value, "\r\n");
 
             return str;
+        }
+        private static void ParseFields(ref ActionScript code)
+        {
+            var matches = Regex.Matches(code.ActionCode, @"var\s+(\w+)\:(\w+)\s*[;=]");
+            foreach(Match m in matches)
+            {
+                var name = m.Groups[1].Value;
+                var type = m.Groups[2].Value;
+                if(m.Groups[0].Value.IndexOf('=')<0)
+                    code.ActionCode = code.ActionCode.Replace(m.Groups[0].Value, $"{type} {name};");
+                else
+                    code.ActionCode = code.ActionCode.Replace(m.Groups[0].Value, $"{type} {name}=");
+            }
         }
     }
 }
