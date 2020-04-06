@@ -10,13 +10,16 @@ namespace MxML.Parser
         public static void Main(string[] args)
         {
             PrintLogo();
-
-            Parser.ParseData(@"C:\Users\shive\Desktop\loginscreen\flex");
-            ParseJava();
+            string path;
+            if(args.Length>=1)
+                path = args[0];
+            else
+                path= @"C:\Users\shive\Desktop\loginscreen\";
+            Parser.ParseData(path);
+            ParseJava(path);
         }
-        private static void ParseJava()
+        private static void ParseJava(string path)
         {
-            string path = @"C:\Users\shive\Desktop\loginscreen\";
             HelperUtility.LogInitiation($"\nStarted Parsing java files of Path:{path}");
 
             var files =HelperUtility.GetAllFilesOfExtension(path, ".java");
