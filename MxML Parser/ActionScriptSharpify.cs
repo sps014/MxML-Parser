@@ -12,6 +12,7 @@ namespace MxML.Parser
         {
             { "String","string" },
             {"Boolean","bool" },
+            {"boolean","bool" },
             {"final ",string.Empty },
         };
         public static ActionScript Parse2Csharp(ActionScript actionScript)
