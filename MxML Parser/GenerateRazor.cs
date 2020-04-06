@@ -17,17 +17,18 @@ namespace MxML.Parser
             var xml = ReadFile(path);
             xml = RemovedNamespace(xml);
 
-            mxMLParsed.ActionCode = ParseCDATA(xml);
-            mxMLParsed.RazorCode = ParseTags(xml, mxMLParsed.ActionCode);
+            mxMLParsed.ActionScript.ActionCode = ParseCDATA(xml);
+            mxMLParsed.RazorCode = ParseTags(xml, mxMLParsed.ActionScript.ActionCode);
             mxMLParsed.RazorCode = FilterTransition(mxMLParsed.RazorCode);
             mxMLParsed.RazorCode = FilterStates(mxMLParsed.RazorCode);
             mxMLParsed.RazorCode = FilterRemoteObject(mxMLParsed.RazorCode);
             mxMLParsed.RazorCode = ReplaceColons(mxMLParsed.RazorCode);
             mxMLParsed.RazorCode = FilterExtraWhiteSpace(mxMLParsed.RazorCode);
             mxMLParsed.RazorCode = namespaces + mxMLParsed.RazorCode;
-            
+
 
             ///Action Script
+            mxMLParsed.ActionScript = ActionScriptSharpify.Parse2Csharp(mxMLParsed.ActionScript);
 
             mxMLParsed.Path = path;
 

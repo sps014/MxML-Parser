@@ -7,12 +7,12 @@ namespace MxML.Parser
 {
     public static class ActionScriptSharpify
     {
-        public static string ParseCsharp(string actionCode)
+        public static ActionScript Parse2Csharp(ActionScript actionScript)
         {
-            var Data = CleanCDATA(actionCode);
+            var Data = CleanCDATA(actionScript.ActionCode);
 
 
-            return Data;
+            return actionScript;
         }
         private static string CleanCDATA(string str)
         {
