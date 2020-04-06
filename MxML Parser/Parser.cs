@@ -25,9 +25,9 @@ namespace MxML.Parser
             }
 
             if (parseSuccessStatus)
-                HelperUtility.LogSuccess("Successfully parsed files");
+                HelperUtility.LogSuccess($"Successfully parsed files of {path}");
             else
-                HelperUtility.LogError("Failed parsing files");
+                HelperUtility.LogError($"Failed parsing files of {path}");
 
 
             return parseResult.ToArray();

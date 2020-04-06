@@ -17,13 +17,15 @@ namespace MxML.Parser
         private static void ParseJava()
         {
             string path = @"C:\Users\shive\Desktop\loginscreen\";
-            HelperUtility.LogInitiation($"Started Parsing java files of Path:{path}");
+            HelperUtility.LogInitiation($"\nStarted Parsing java files of Path:{path}");
 
             var files =HelperUtility.GetAllFilesOfExtension(path, ".java");
             foreach(var m in files)
             {
                 SharpifyJava.GetSharpified(m);
             }
+
+            HelperUtility.LogSuccess($"Finished Parsing java files of  {path}");
         }
         private static void PrintLogo()
         {
