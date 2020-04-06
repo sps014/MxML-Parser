@@ -4,7 +4,11 @@ using System.Text;
 
 namespace MxML.Parser
 {
-    public class ActionScriptSharpify
+    public static class ActionScriptSharpify
     {
+        public string ParseCsharp(string actionCode)
+        {
+
+        }
     }
 }
