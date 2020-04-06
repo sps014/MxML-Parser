@@ -13,7 +13,7 @@ namespace MxML.Parser
         {
             { "String","string" },
             {"boolean","bool" },
-            {"final ",string.Empty },
+            {"final ",string.Empty }
         };
         public static string GetSharpified(string path)
         {
