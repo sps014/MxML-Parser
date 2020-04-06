@@ -11,7 +11,7 @@ namespace MxML.Parser
         private static Dictionary<string, string> InPlaceReplacements = new Dictionary<string, string>()
         {
             { "String","string" },
-            {"boolean","bool" },
+            {"Boolean","bool" },
             {"final ",string.Empty },
         };
         public static ActionScript Parse2Csharp(ActionScript actionScript)
@@ -23,6 +23,7 @@ namespace MxML.Parser
             FunctionParameter(ref actionScript);
             FunctionDefinition(ref actionScript);
             ReplaceSingleQuote(ref actionScript);
+            DictionaryReplace(ref actionScript);
             return actionScript;
         }
         private static string CleanCDATA(string str)
