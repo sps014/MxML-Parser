@@ -18,5 +18,14 @@
                    x="187"
                    y="149"
                    styleName="Button"
-                   automationName="btnLogin" />
+                   automationName="btnLogin" onClick="test"/>
     </mx.TitleWindow>
+
+@code
+{
+    int s = 0;
+    void test()
+    {
+        s++;
+    }
+}

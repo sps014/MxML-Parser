@@ -26,5 +26,15 @@ namespace MxML.Parser
             }
             return str;
         }
+        private static string GetNamespaces(ref string str)
+        {
+            StringBuilder sb = new StringBuilder(string.Empty);
+            var matches=Regex.Matches(str, @"import\s+((.)*);");
+            foreach(Match m in matches)
+            {
+                str=
+            }
+            return sb.ToString();
+        }
     }
 }
