@@ -8,6 +8,12 @@ namespace MxML.Parser
 {
     public static class ActionScriptSharpify
     {
+        private static Dictionary<string, string> InPlaceReplacements = new Dictionary<string, string>()
+        {
+            { "String","string" },
+            {"boolean","bool" },
+            {"final ",string.Empty },
+        };
         public static ActionScript Parse2Csharp(ActionScript actionScript)
         {
             actionScript.ActionCode = CleanCDATA(actionScript.ActionCode);
@@ -87,6 +93,14 @@ namespace MxML.Parser
                 code.ActionCode = code.ActionCode.Replace(m.Groups[0].Value,$"{type} {name}{param}");
             }
             code.ActionCode=code.ActionCode.Replace("function", string.Empty);
+        }
+        private static void DictionaryReplace(ref ActionScript str)
+        {
+            foreach (var m in InPlaceReplacements)
+            {
+                str.ActionCode = str.ActionCode.Replace(m.Key, m.Value);
+            }
+
         }
     }
 }
