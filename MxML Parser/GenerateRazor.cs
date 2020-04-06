@@ -124,6 +124,7 @@ namespace MxML.Parser
         private static void WriteFile(MxMLParsedData data)
         {
             StreamWriter sw = new StreamWriter(NameWithoutExtension(data.Path));
+            sw.Write(data.ActionScript.CSImports);
             sw.Write(data.RazorCode);
             sw.Close();
         }

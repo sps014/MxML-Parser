@@ -10,7 +10,7 @@ namespace MxML.Parser
         public static ActionScript Parse2Csharp(ActionScript actionScript)
         {
             var Data = CleanCDATA(actionScript.ActionCode);
-
+            actionScript.CSImports = GetNamespaces(ref actionScript);
 
             return actionScript;
         }
@@ -26,14 +26,17 @@ namespace MxML.Parser
             }
             return str;
         }
-        private static string GetNamespaces(ref string str)
+        private static string GetNamespaces(ref ActionScript str)
         {
             StringBuilder sb = new StringBuilder(string.Empty);
-            var matches=Regex.Matches(str, @"import\s+((.)*);");
+            var matches=Regex.Matches(str.ActionCode, @"import\s+((.)*);");
             foreach(Match m in matches)
             {
-                str=
+                sb.Append("@using "+m.Groups[1].Value+";\n");
+                str.ActionCode.Replace(m.Groups[0].Value, string.Empty);
             }
+
+            sb=sb.Replace(".*", string.Empty);
             return sb.ToString();
         }
     }
