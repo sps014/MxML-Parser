@@ -58,7 +58,7 @@ namespace MxML.Parser
         }
         private static string RemovedNamespace(string str)
         {
-            var match=Regex.Match(str, @"xmlns:mx=\W(.*)\W");
+            var match=Regex.Match(str, @"\s+xmlns:mx=\W(.*)\W");
             if (match.Groups.Count >= 1)
                 if (match.Groups[0].Value.Length > 0)
                     return str.Replace(match.Groups[0].Value, "");

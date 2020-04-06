@@ -22,6 +22,7 @@ namespace MxML.Parser
             ParseFields(ref actionScript);
             FunctionParameter(ref actionScript);
             FunctionDefinition(ref actionScript);
+            ReplaceSingleQuote(ref actionScript);
             return actionScript;
         }
         private static string CleanCDATA(string str)
@@ -79,6 +80,15 @@ namespace MxML.Parser
                 var name = m.Groups[2].Value;
                 var type = m.Groups[3].Value;
                     code.ActionCode = code.ActionCode.Replace(m.Groups[0].Value, $"{type} {name}");
+            }
+        }
+        private static void ReplaceSingleQuote(ref ActionScript code)
+        {
+            var matches = Regex.Matches(code.ActionCode, @"\'((.)*?)\'");
+            foreach (Match m in matches)
+            {
+                var name = m.Groups[2].Value;
+                code.ActionCode = code.ActionCode.Replace(m.Groups[0].Value, $"\"{name}\"");
             }
         }
         private static void FunctionDefinition(ref ActionScript code)
