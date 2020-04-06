@@ -10,10 +10,10 @@ namespace MxML.Parser
     {
         private static Dictionary<string, string> InPlaceReplacements = new Dictionary<string, string>()
         {
-            { "String","string" },
-            {"Boolean","bool" },
-            {"boolean","bool" },
-            {"final ",string.Empty },
+            { "String", "string" },
+            { "Boolean", "bool" },
+            { "boolean", "bool" },
+            { "final ", string.Empty },
         };
         public static ActionScript Parse2Csharp(ActionScript actionScript)
         {

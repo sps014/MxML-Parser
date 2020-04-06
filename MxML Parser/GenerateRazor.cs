@@ -103,6 +103,12 @@ namespace MxML.Parser
                 if (match.Groups[0].Value.Length > 0)
                     return str.Replace(match.Groups[0].Value, "");
 
+            match = Regex.Match(str, @"(<mx:RemoteObject(.|\n)*?\/\>)",
+                RegexOptions.IgnoreCase | RegexOptions.Multiline);
+            if (match.Groups.Count >= 1)
+                if (match.Groups[0].Value.Length > 0)
+                    return str.Replace(match.Groups[0].Value, "");
+
             return str;
         }
 
