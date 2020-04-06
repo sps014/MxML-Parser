@@ -14,6 +14,7 @@ namespace MxML.Parser
             actionScript.CSImports = GetNamespaces(ref actionScript);
             actionScript = FilterExtraWhiteSpace(actionScript);
             ParseFields(ref actionScript);
+            FunctionParameter(ref actionScript);
             return actionScript;
         }
         private static string CleanCDATA(string str)
@@ -61,6 +62,16 @@ namespace MxML.Parser
                     code.ActionCode = code.ActionCode.Replace(m.Groups[0].Value, $"{type} {name};");
                 else
                     code.ActionCode = code.ActionCode.Replace(m.Groups[0].Value, $"{type} {name}=");
+            }
+        }
+        private static void FunctionParameter(ref ActionScript code)
+        {
+            var matches = Regex.Matches(code.ActionCode, @"\s*(var)?(\w+)\:(\w+)\s*");
+            foreach (Match m in matches)
+            {
+                var name = m.Groups[2].Value;
+                var type = m.Groups[3].Value;
+                    code.ActionCode = code.ActionCode.Replace(m.Groups[0].Value, $"{type} {name}");
             }
         }
     }
