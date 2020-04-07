@@ -1,0 +1,30 @@
+﻿<textarea id:@id contenteditable=@editable  style="height:@height;color:@color; width:@width ">text</textarea>
+
+@code {
+    [Parameter]
+    public string id { get; set; }
+    [Parameter]
+    public string color { get; set; }
+    [Parameter]
+    public string width { get; set; }
+    [Parameter]
+    public string height { get; set; }
+    [Parameter]
+    public string text { get; set; }
+    [Parameter]
+    public bool editable { get; set; }
+
+
+}
+
+@*
+
+    "_id": "textArea",
+                            "_text": "",
+                            "_color": "#000000",
+                            "_width": "100%",
+                            "_height": "100%",
+                            "_editable": "false",
+                            "__prefix": "mx"
+    
+    *@

@@ -1,9 +1,9 @@
-﻿<input type="text" class="form-control" placeholder="input" @bind-value="text" style="position:absolute;left:@(x)px;top:@(y)px;max-width:@(maxWidth)px;@style" id="@id" maxlength="@maxChars" />
+﻿<button class="btn btn-primary waves-effect" style="position:absolute;left:@(x)px;top:@(y)px" id="@id">@label</button>
 
 @code
 {
     [Parameter]
-    public string text { get; set; }
+    public string label { get; set; }
     [Parameter]
     public string id { get; set; }
     [Parameter]
@@ -18,6 +18,4 @@
     public string automationName { get; set; }
     [Parameter]
     public string style { get; set; }
-    [Parameter]
-    public int maxWidth { get; set; } = 200;
 }

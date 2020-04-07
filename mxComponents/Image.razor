@@ -1,0 +1,52 @@
+﻿<a href=@click data-toggle=@tooltip style="width:@width;height:@height;position:relative;left:@x;top:@y;visibility:@visible; "><img id=@id src=@source /></a>
+
+
+@code{
+    [Parameter]
+    public string id { get; set; }
+    [Parameter]
+    public string source { get; set; }
+    [Parameter]
+    public string automationName { get; set; }
+    [Parameter]
+    public string width { get; set; }
+    [Parameter]
+    public string height { get; set; }
+    [Parameter]
+    public string tooltip { get; set; }
+    [Parameter]
+    public string x { get; set; }
+    [Parameter]
+    public string y { get; set; }
+    [Parameter]
+    public bool useHandCursor { get; set; }
+    [Parameter]
+    public bool visible { get; set; }
+    [Parameter]
+    public bool includeInLayout { get; set; }
+    [Parameter]
+    public string alpha { get; set; }
+    [Parameter]
+    public bool buttonMode { get; set; }
+    [Parameter]
+    public EventCallback click { get; set; }
+
+}
+
+@*
+
+    "_id": "messageImageExp",
+    "_source": "{mailImage}",
+    "_x": "45",
+    "_y": "40",
+    "_width": "40",
+    "_height": "40",
+    "_click": "togglePanelState(event)",
+    "_visible": "false",
+    "_includeInLayout": "false",
+    "_toolTip": "Click here to open",
+    "_alpha": "1",
+    "_mouseOver": "messageImageExp.alpha = 10",
+    "_mouseOut": "messageImageExp.alpha = 1",
+    "__prefix": "mx"
+    *@

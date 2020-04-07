@@ -1,4 +1,4 @@
-﻿<p id="@id" class="text-default" style="font-weight:@fontWeight;color:@color;  position:absolute;left:@(x)px;top:@(y)px;">@text</p>
+﻿<p id="@id" class="text-default" style="position:absolute;left:@(x)px;top:@(y)px;@style">@text</p>
 
 
 @code
@@ -15,8 +15,4 @@
     public string automationName { get; set; }
     [Parameter]
     public string style { get; set; }
-    [Parameter]
-    public string fontWeight { get; set; }
-    [Parameter]
-    public string color { get; set; }
 }

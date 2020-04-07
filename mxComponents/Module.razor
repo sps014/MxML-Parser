@@ -1,0 +1,46 @@
+﻿<div id=@id style="width: @width ; height:@height ; background-color: @backgroundColor ; border-style:@borderStyle; padding:@paddingLeft @paddingTop @paddingRight @paddingBottom;margin:@horizontalGap @verticalGap @horizontalGap @verticalGap">
+    @ChildContent
+</div>
+
+
+@code{
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public string id { get; set; }
+    [Parameter]
+    public string width { get; set; }
+    [Parameter]
+    public string height { get; set; }
+    [Parameter]
+    public string borderStyle { get; set; }
+    [Parameter]
+    public int paddingTop { get; set; }
+    [Parameter]
+    public int paddingBottom { get; set; }
+    [Parameter]
+    public int paddingRight { get; set; }
+    [Parameter]
+    public int paddingLeft { get; set; }
+    [Parameter]
+    public int verticalGap { get; set; }
+    [Parameter]
+    public int horizontalGap { get; set; }
+    [Parameter]
+    public string backgroundColor { get; set; }
+    [Parameter]
+    public string automationName { get; set; }
+    [Parameter]
+    public string creationComplete { get; set; }
+}
+
+
+@*
+
+    "_width": "100%",
+    "_height": "100%",
+    "_automationName": "DashboardModule",
+    "__prefix": "mx"
+
+*@

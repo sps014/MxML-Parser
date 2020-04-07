@@ -2,30 +2,32 @@
 @using mx;
 
 
-    <mx.TitleWindow title="PAC MAN BLAH" height="400" width="500" x="200" y="100">
-        <mx.Label id="userLabel" text="UserName"
+    <mx.TitleWindow title="PACS Login [IN CONFIDENCE]" showCloseButton="false"
+                    layout="absolute"
+                    height="202"
+                    width="370"
+                    styleName="Canvas"
+                    fontSize="11"
+                    automationName="ComponentLoginScreen"
+                    horizontalAlign="center"
+                    verticalAlign="middle" creationComplete="init(event)">
+        <mx.Label id="userLabel" text="Resource(bundle='messages', key='login.username')"
                   x="29"
                   y="67"
                   automationName="lblUserName" />
-
-        <mx.TextInput id="login" maxChars="25" text="here some text"
+        <mx.TextInput id="login" maxChars="25" enter="doLogin()" text=""
                       x="121"
                       y="65"
                       styleName="TextInput"
                       automationName="txtUserName" />
+        <mx.Label id="passwordLabel" text="Resource(bundle='messages', key='login.password')"
+                  x="29"
+                  y="107"
+                  automationName="lblPassword" />
+        <mx.TextInput id="password" displayAsPassword="true" maxChars="25" enter="doLogin()" text=""
+                      x="121"
+                      y="105"
+                      styleName="TextInput"
+                      automationName="txtPassword" />
 
-        <mx.Button id="okButton" label="LogIn"
-                   x="187"
-                   y="149"
-                   styleName="Button"
-                   automationName="btnLogin" onClick="test"/>
     </mx.TitleWindow>
-
-@code
-{
-    int s = 0;
-    void test()
-    {
-        s++;
-    }
-}

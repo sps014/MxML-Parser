@@ -1,0 +1,24 @@
+﻿
+<a id = @id  href=@click data-toggle=@tooltip style="font-size:@fontSize;color:@color">@text</a>
+                              
+@code {
+
+    [Parameter]
+    public string id { get; set; }
+    [Parameter]
+    public string click { get; set; }
+    [Parameter]
+    public string text { get; set; }
+    [Parameter]
+    public string automationName { get; set; }
+    [Parameter]
+    public int fontSize { get; set; }
+    [Parameter]
+    public string color { get; set; }
+    [Parameter]
+    public string tooltip { get; set; }
+    [Parameter]
+    public bool visible { get; set; }
+    [Parameter]
+    public bool includeInLayout { get; set; }
+}
