@@ -1,33 +1,23 @@
-﻿@*<mx.TitleWindow title="PACS Login [IN CONFIDENCE]" showCloseButton="false"
-    layout="absolute"
-    height="202"
-    width="370"
-    styleName="Canvas"
-    fontSize="11"
-    automationName="ComponentLoginScreen"
-    horizontalAlign="center"
-    verticalAlign="middle" creationComplete="init(event)">*@
+﻿@*
+    "_xmlns:mx": "http://www.adobe.com/2006/mxml",
+    "_title": "PACS Login [IN CONFIDENCE]",
+    "_showCloseButton": "false",
+    "_layout": "absolute",
+    "_height": "202",
+    "_width": "370",
+    "_styleName": "Canvas",
+    "_fontSize": "11",
+    "_automationName": "ComponentLoginScreen",
+    "_horizontalAlign": "center",
+    "_verticalAlign": "middle",
+    "_creationComplete": "init(event)",
+    "__prefix": "mx"
 
+*@
 
-<div style="        
-        position: absolute;
-        left: @(x)px;
-        top: @(y)px;
-        width: @(width)px;
-        height: @(height)px;
-        border-color: blue;
-        border-width: 2px;
-        border-style: solid; @style">
-    <div style="height: 7%; background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);">
-        <p align="center" style="color:white">@title</p>
-    </div>
-    <div style="        height: 93%;
-        background: #74ebd5; /* fallback for old browsers */
-        background: -webkit-linear-gradient(to right, #74ebd5, #acb6e5); /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to right, #74ebd5, #acb6e5);
-">
-        @ChildContent
-    </div>
+<div   style="  font-size:@(fontSize)px  ;height:@(height)px; width:@(width)px ;position:@(layout);vertical-align:@verticalAlign;">
+    @title
+    @ChildContent
 </div>
 
 
@@ -37,18 +27,52 @@
     [Parameter]
     public RenderFragment ChildContent { get; set; }
     [Parameter]
-    public int width { get; set; }
+    public string width { get; set; }
     [Parameter]
-    public int height { get; set; }
+    public string borderAlpha { get; set; }
     [Parameter]
-    public int x { get; set; }
+    public string height { get; set; }
     [Parameter]
-    public int y { get; set; }
+    public string x { get; set; }
+    [Parameter]
+    public string y { get; set; }
     [Parameter]
     public int fontSize { get; set; }
     [Parameter]
     public string title { get; set; }
     [Parameter]
     public string style { get; set; }
+    [Parameter]
+    public bool showCloseButton { get; set; }
+    [Parameter]
+    public string layout { get; set; }
+    [Parameter]
+    public string styleName { get; set; }
+    [Parameter]
+    public string horizontalAlign { get; set; }
+    [Parameter]
+    public string verticalAlign { get; set; }
+    [Parameter]
+    public string automationName { get; set; }
+    [Parameter]
+    public EventCallback creationComplete { get; set; }
+
 
 }
+
+@*
+    "_xmlns:mx": "http://www.adobe.com/2006/mxml",
+    "_title": "PACS Login [IN CONFIDENCE]",
+    "_showCloseButton": "false",
+    "_layout": "absolute",
+    "_height": "202",
+    "_width": "370",
+    "_styleName": "Canvas",
+    "_fontSize": "11",
+    "_automationName": "ComponentLoginScreen",
+    "_horizontalAlign": "center",
+    "_verticalAlign": "middle",
+    "_creationComplete": "init(event)",
+    "__prefix": "mx"
+
+*@

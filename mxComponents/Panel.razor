@@ -1,0 +1,80 @@
+﻿<h3>Panel</h3>
+<div id="panel" title=@title style="
+left: @(left)px;top: @(top)px;bottom:@(bottom)px;right:@(right)px;
+     border:solid;border-left-width: @(borderThicknessLeft)px; color:@color; border-right-width:@(borderThicknessRight)px;border-bottom-width: @(borderThicknessBottom)px;border-color: @borderColor;border-width:@(borderThickness)px">
+    @ChildContent
+</div>
+
+
+@code {
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    [Parameter]
+    public string id { get; set; }
+    [Parameter]
+    public int fontSize { get; set; }
+    [Parameter]
+    public string title { get; set; }
+    [Parameter]
+    public string layout { get; set; }
+    [Parameter]
+    public string styleName { get; set; }
+    [Parameter]
+    public string left { get; set; }
+    [Parameter]
+    public string top { get; set; }
+    [Parameter]
+    public string right { get; set; }
+    [Parameter]
+    public string bottom { get; set; }
+    [Parameter]
+    public string automationName { get; set; }
+    [Parameter]
+    public string borderColor { get; set; }
+    [Parameter]
+    public string borderAlpha { get; set; }
+
+    [Parameter]
+    public string borderThickness { get; set; }
+    [Parameter]
+    public string borderThicknessRight { get; set; }
+    [Parameter]
+    public string borderThicknessBottom { get; set; }
+    [Parameter]
+    public string borderThicknessLeft { get; set; }
+    [Parameter]
+    public string color { get; set; }
+    [Parameter]
+    public bool clipContent { get; set; }
+    [Parameter]
+    public bool dropShadowEnabled { get; set; }
+    [Parameter]
+    public bool _roundedBottomCorners { get; set; }
+
+}
+
+@*
+
+    "_id": "panel",
+    "_title": ".      {this.title}",
+    "_layout": "absolute",
+    "_left": "0",
+    "_top": "0",
+    "_bottom": "0",
+    "_right": "0",
+    "_clipContent": "true",
+    "_borderThicknessLeft": "3",
+    "_borderThicknessRight": "3",
+    "_borderThicknessBottom": "3",
+    "_borderAlpha": "1",
+    "_borderColor": "#8190a5",
+    "_automationName": "panel",
+    "_styleName": "msgPanelTitle",
+    "_borderThickness": "1",
+    "_dropShadowEnabled": "false",
+    "_roundedBottomCorners": "true",
+    "_alpha": "1.0",
+    "_color": "#FFFFFF",
+    "__prefix": "mx"
+*@

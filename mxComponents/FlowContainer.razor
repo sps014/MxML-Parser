@@ -1,0 +1,51 @@
+﻿<div id=@id style="width: @width ; height:@height ; background-color: @backgroundColor ; border-style:@borderStyle; padding:@paddingLeft @paddingTop @paddingRight @paddingBottom;margin:@horizontalGap @verticalGap @horizontalGap @verticalGap">
+    @automationName
+</div>
+
+
+@code{
+
+    [Parameter]
+    public string id { get; set; }
+    [Parameter]
+    public string width { get; set; }
+    [Parameter]
+    public string height { get; set; }
+    [Parameter]
+    public string borderStyle { get; set; }
+    [Parameter]
+    public int paddingTop { get; set; }
+    [Parameter]
+    public int paddingBottom { get; set; }
+    [Parameter]
+    public int paddingRight { get; set; }
+    [Parameter]
+    public int paddingLeft { get; set; }
+    [Parameter]
+    public int verticalGap { get; set; }
+    [Parameter]
+    public int horizontalGap { get; set; }
+    [Parameter]
+    public string backgroundColor { get; set; }
+    [Parameter]
+    public string automationName { get; set; }
+    [Parameter]
+    public string creationComplete { get; set; }
+}
+
+@*
+
+    "_id": "dashboard",
+            "_width": "100%",
+            "_height": "100%",
+            "_borderStyle": "solid",
+            "_paddingTop": "10",
+            "_paddingBottom": "10",
+            "_paddingRight": "10",
+            "_paddingLeft": "10",
+            "_verticalGap": "15",
+            "_horizontalGap": "10",
+            "_backgroundColor": "white",
+            "_automationName": "tileDashboard",
+            "_creationComplete": "init()",
+            "__prefix": "code"*@

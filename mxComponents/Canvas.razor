@@ -1,0 +1,16 @@
+﻿<canvas id=@id width=@width height=@height style="background-color:aquamarine">
+    @ChildContent
+</canvas>
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    [Parameter]
+    public String id { get; set; }
+    [Parameter]
+    public String automationName { get; set; }
+    [Parameter]
+    public string width { get; set; }
+    [Parameter]
+    public string height { get; set; }
+
+}

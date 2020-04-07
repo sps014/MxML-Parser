@@ -1,4 +1,4 @@
-﻿<p id="@id" class="text-default" style="font-weight:@fontWeight;color:@color;  position:absolute;left:@(x)px;top:@(y)px;">@text</p>
+﻿<span id="@id"  style="width:@width; font-weight:@fontWeight;color: @color;  position:absolute;left:@(x)px;top:@(y)px;">@text</span>
 
 
 @code
@@ -9,6 +9,8 @@
     public int x { get; set; } = 0;
     [Parameter]
     public int y { get; set; } = 0;
+    [Parameter]
+    public string width { get; set; }
     [Parameter]
     public string id { get; set; }
     [Parameter]

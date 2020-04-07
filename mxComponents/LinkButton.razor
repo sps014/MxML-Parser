@@ -1,0 +1,32 @@
+﻿<a href=@click data-toggle=@toolTip style="width: @width;height: @height;">
+    @ChildContent
+</a>
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    [Parameter]
+    public string id { get; set; }
+    [Parameter]
+    public string automationName { get; set; }
+    [Parameter]
+    public string height { get; set; }
+    [Parameter]
+    public string width { get; set; }
+    [Parameter]
+    public string toolTip { get; set; }
+    [Parameter]
+    public EventCallback click { get; set; }
+
+}
+
+@*
+    "_id": "minimizeButton",
+            "_icon": "{ImageUtil.MINIMIZE}",
+            "_automationName": "minimizeButton",
+            "_height": "23",
+            "_click": "minimize()",
+            "_toolTip": "Minimize",
+            "__prefix": "mx"
+
+*@			

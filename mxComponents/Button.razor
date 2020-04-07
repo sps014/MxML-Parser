@@ -1,24 +1,52 @@
-﻿
-<button class="btn btn-primary waves-effect" style="position:absolute;left:@(x)px;top:@(y)px" id="@id">@label</button>
+﻿<button 
+        style="color:@(color); 
+        font-size:@fontSize;
+        width:@width;max-width:200px;
+        font-weight:@fontWeight;position:absolute;top:@(y)px;left:@(x)px" id="@id">
+    @label
+</button>
 
-@code
+    @code
 {
-    [Parameter]
-    public string label { get; set; }
-    [Parameter]
-    public string id { get; set; }
-    [Parameter]
-    public int maxChars { get; set; }
-    [Parameter]
-    public int x { get; set; }
-    [Parameter]
-    public int y { get; set; }
-    [Parameter]
-    public string styleName { get; set; }
-    [Parameter]
-    public string automationName { get; set; }
-    [Parameter]
-    public string style { get; set; }
-    [Parameter]
-    public EventCallback onClick { get; set; }
-}
+        [Parameter]
+        public string label { get; set; }
+        [Parameter]
+        public string id { get; set; }
+        [Parameter]
+        public int maxChars { get; set; }
+        [Parameter]
+        public int x { get; set; }
+        [Parameter]
+        public int y { get; set; }
+        [Parameter]
+        public string styleName { get; set; }
+        [Parameter]
+        public string automationName { get; set; }
+        [Parameter]
+        public string style { get; set; }
+
+        [Parameter]
+        public string width { get; set; }
+        [Parameter]
+        public string text { get; set; }
+        [Parameter]
+        public string fontWeight { get; set; }
+        [Parameter]
+        public string fontSize { get; set; }
+        [Parameter]
+        public string color { get; set; }
+        [Parameter]
+        public EventCallback click { get; set; }
+        [Parameter]
+        public EventCallback keyDown { get; set; }
+
+    }
+
+    @*
+        "_label": ">",
+        "_width": "35",
+        "_click": "nextMessage()",
+        "_color": "#000000",
+        "_fontSize": "8",
+        "__prefix": "mx"
+        *@

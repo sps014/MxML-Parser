@@ -14,7 +14,7 @@ namespace MxML.Parser
             if(args.Length>=1)
                 path = args[0];
             else
-                path= @"C:\Users\shive\Desktop\loginscreen\";
+                path= @"C:\Users\ragha\Downloads\Programs\loginscreen\";
 
             Parser.ParseData(path);
             ParseJava(path);

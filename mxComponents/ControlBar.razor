@@ -1,0 +1,9 @@
+﻿<div style="text-align:right">
+    @ChildContent
+</div>
+@code {
+    [Parameter]
+    public string horizontalAlign { get; set; }
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}
