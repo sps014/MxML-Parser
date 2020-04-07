@@ -2,6 +2,7 @@
 @using mx;
 
 
+
     <mx.TitleWindow title="PACS Login [IN CONFIDENCE]" showCloseButton="false"
                     layout="absolute"
                     height="202"
@@ -10,24 +11,31 @@
                     fontSize="11"
                     automationName="ComponentLoginScreen"
                     horizontalAlign="center"
-                    verticalAlign="middle" creationComplete="init(event)">
-        <mx.Label id="userLabel" text="Resource(bundle='messages', key='login.username')"
+                    verticalAlign="middle">
+        <mx.Label id="userLabel" text="username"
                   x="29"
                   y="67"
                   automationName="lblUserName" />
-        <mx.TextInput id="login" maxChars="25" enter="doLogin()" text=""
+        <mx.TextInput id="login" maxChars="25"  text=""
                       x="121"
                       y="65"
                       styleName="TextInput"
                       automationName="txtUserName" />
-        <mx.Label id="passwordLabel" text="Resource(bundle='messages', key='login.password')"
+        <mx.Label id="passwordLabel" text="password"
                   x="29"
                   y="107"
                   automationName="lblPassword" />
-        <mx.TextInput id="password" displayAsPassword="true" maxChars="25" enter="doLogin()" text=""
+        <mx.TextInput id="password" displayAsPassword="true" maxChars="25"  text=""
                       x="121"
                       y="105"
                       styleName="TextInput"
                       automationName="txtPassword" />
 
+        <mx.ControlBar horizontalAlign="right">
+            <mx.Button id="okButton" label="Login"
+                       x="187"
+                       y="149"
+                       styleName="Button"
+                       automationName="btnLogin" />
+        </mx.ControlBar>
     </mx.TitleWindow>

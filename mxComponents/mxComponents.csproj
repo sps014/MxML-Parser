@@ -8,6 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="ControlBar.razor" />
+    <Content Remove="Counter.razor" />
     <Content Remove="FetchData.razor" />
   </ItemGroup>
 

@@ -1,13 +1,25 @@
 ﻿<h3>Panel</h3>
+<div id="panel" title=@title style="
+left: @(left)px;top: @(top)px;bottom:@(bottom)px;right:@(right)px;
+     border:solid;border-left-width: @(borderThicknessLeft)px; color:@color; border-right-width:@(borderThicknessRight)px;border-bottom-width: @(borderThicknessBottom)px;border-color: @borderColor;border-width:@(borderThickness)px">
+    @ChildContent
+</div>
+
 
 @code {
 
     [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    [Parameter]
     public string id { get; set; }
+    [Parameter]
+    public int fontSize { get; set; }
     [Parameter]
     public string title { get; set; }
     [Parameter]
     public string layout { get; set; }
+    [Parameter]
+    public string styleName { get; set; }
     [Parameter]
     public string left { get; set; }
     [Parameter]
@@ -22,6 +34,9 @@
     public string borderColor { get; set; }
     [Parameter]
     public string borderAlpha { get; set; }
+
+    [Parameter]
+    public string borderThickness { get; set; }
     [Parameter]
     public string borderThicknessRight { get; set; }
     [Parameter]
@@ -32,9 +47,12 @@
     public string color { get; set; }
     [Parameter]
     public bool clipContent { get; set; }
+    [Parameter]
+    public bool dropShadowEnabled { get; set; }
+    [Parameter]
+    public bool _roundedBottomCorners { get; set; }
 
 }
-
 
 @*
 
@@ -58,4 +76,5 @@
     "_roundedBottomCorners": "true",
     "_alpha": "1.0",
     "_color": "#FFFFFF",
-    "__prefix": "mx"*@
+    "__prefix": "mx"
+*@

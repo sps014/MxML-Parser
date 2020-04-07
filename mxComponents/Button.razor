@@ -1,7 +1,10 @@
 ﻿<button 
-        class="btn btn-primary waves-effect" style="color:@color; font-size:@fontSize;font-weight:@fontWeight;" id="@id">
+        style="color:@(color); 
+        font-size:@fontSize;
+        width:@width;max-width:200px;
+        font-weight:@fontWeight;position:absolute;top:@y;left:@x" id="@id">
     @label
-    </button>
+</button>
 
     @code
 {
@@ -23,6 +26,8 @@
         public string style { get; set; }
 
         [Parameter]
+        public string width { get; set; }
+        [Parameter]
         public string text { get; set; }
         [Parameter]
         public string fontWeight { get; set; }
@@ -32,6 +37,8 @@
         public string color { get; set; }
         [Parameter]
         public EventCallback click { get; set; }
+        [Parameter]
+        public EventCallback keyDown { get; set; }
 
     }
 
