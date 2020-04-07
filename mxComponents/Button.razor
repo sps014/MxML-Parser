@@ -1,8 +1,10 @@
 ﻿<button 
         style="color:@(color); 
+        color:white;
         font-size:@fontSize;
         width:@width;max-width:200px;
-        font-weight:@fontWeight;position:absolute;top:@(y)px;left:@(x)px" id="@id">
+        font-weight:@fontWeight;position:absolute;top:@(y)px;left:@(x)px" id="@id"
+        class="btn waves-effect @color">
     @label
 </button>
 
@@ -34,7 +36,7 @@
         [Parameter]
         public string fontSize { get; set; }
         [Parameter]
-        public string color { get; set; }
+        public string color { get; set; } = "blue";
         [Parameter]
         public EventCallback click { get; set; }
         [Parameter]

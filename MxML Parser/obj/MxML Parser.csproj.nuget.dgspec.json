@@ -1,21 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ragha\\MxML-Parser\\MxML Parser\\MxML Parser.csproj": {}
+    "C:\\Users\\shive\\Desktop\\Test\\MxML Parser\\MxML Parser\\MxML Parser.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ragha\\MxML-Parser\\MxML Parser\\MxML Parser.csproj": {
+    "C:\\Users\\shive\\Desktop\\Test\\MxML Parser\\MxML Parser\\MxML Parser.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ragha\\MxML-Parser\\MxML Parser\\MxML Parser.csproj",
+        "projectUniqueName": "C:\\Users\\shive\\Desktop\\Test\\MxML Parser\\MxML Parser\\MxML Parser.csproj",
         "projectName": "MxML Parser",
-        "projectPath": "C:\\Users\\ragha\\MxML-Parser\\MxML Parser\\MxML Parser.csproj",
-        "packagesPath": "C:\\Users\\ragha\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ragha\\MxML-Parser\\MxML Parser\\obj\\",
+        "projectPath": "C:\\Users\\shive\\Desktop\\Test\\MxML Parser\\MxML Parser\\MxML Parser.csproj",
+        "packagesPath": "C:\\Users\\shive\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\shive\\Desktop\\Test\\MxML Parser\\MxML Parser\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\ragha\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\shive\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -52,7 +56,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300-preview-015048\\RuntimeIdentifierGraph.json"
         }
       }
     }
