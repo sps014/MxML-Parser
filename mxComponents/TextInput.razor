@@ -1,5 +1,15 @@
-﻿<input type="text"
-       class="form-control" placeholder="input" @bind-value="text" style="position:absolute;left:@(x)px;top:@(y)px;max-width:@(maxWidth)px;" id="@id" maxlength="@maxChars" />
+﻿
+    if (@displayAsPassword == "true")
+    {
+
+    }
+    else
+    {
+
+    }
+
+<input type="text"
+        placeholder="input" @bind-value="text" style="position:absolute;left:@(x)px;top:@(y)px;max-width:@(maxWidth)px;" id="@id" maxlength="@maxChars" />
 
 @code
 {
@@ -22,7 +32,7 @@
     [Parameter]
     public string displayAsPassword { get; set; }
     [Parameter]
-    public int maxWidth { get; set; }
+    public int maxWidth { get; set; } = 200;
     [Parameter]
     public EventCallback enter { get; set; }
 }
